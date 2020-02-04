@@ -16,5 +16,21 @@
   <link href="assets/vendor/datatables/buttons.bootstrap4.min.css" rel="stylesheet"> 
   <link href="assets/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"/>
   <link href="assets/css/bootstrap-select.min.css" rel="stylesheet">
-  
+  <style type="text/css">
+    .dual-list .list-group {
+      margin-top: 8px;
+    }
+
+    .list-left li, .list-right li {
+      cursor: pointer;
+    }
+
+    .list-arrows {
+      padding-top: 10%;
+    }
+
+    .list-arrows button {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>

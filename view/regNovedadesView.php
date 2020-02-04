@@ -25,7 +25,7 @@
 										<!-- Nested Row within Card Body -->
 										<form action="" method="post" class="user" role="form" id="userForm">
 											<div class="row">
-												<div class="col-lg-6">
+												<div class="col-md-6">
 													<div class="text-center">
 														<h1 class="h4 text-gray-900 mt-2">Datos de la Novedad</h1>
 														<?php if (isset($_SESSION['regNovedades'])&&$_SESSION['regNovedades']==1) {?>
@@ -52,7 +52,7 @@
 															</div>
 															<div class="form-group row">
 																<div class="col-sm-6">
-																	<label for="fecha_hecho">Fecha de la novedad</label>
+																	<label for="fecha_hecho">Fecha y hora de la novedad</label>
 																	<div class="input-group date" id="fecha_hecho" data-target-input="nearest">
 																		<input type="text" name="fecha_hecho" id="fecha_hecho" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_hecho" autocomplete="off" value="<?php echo isset($_POST['fecha_hecho']) ? $_POST['fecha_hecho']:""; ?>">
 																		<div class="input-group-append" >
@@ -63,10 +63,10 @@
 																	</div>
 																</div>
 																<div class="col-sm-6">
-																	<label for="fecha_reporte">Fecha del reporte</label>
+																	<label for="fecha_reporte">Fecha y hora del reporte</label>
 																	<div class="input-group date" id="fecha_reporte" data-target-input="nearest">
-																	<input type="text" name="fecha_reporte" id="fecha_reporte" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_reporte" autocomplete="off" value="<?php echo isset($_POST['fecha_reporte']) ? $_POST['fecha_reporte']:""; ?>">
-																	<div class="input-group-append" >
+																		<input type="text" name="fecha_reporte" id="fecha_reporte" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_reporte" autocomplete="off" value="<?php echo isset($_POST['fecha_reporte']) ? $_POST['fecha_reporte']:""; ?>">
+																		<div class="input-group-append" >
 																			<div class="input-group-text">
 																				<i class="fa fa-calendar"></i>
 																			</div>
@@ -80,22 +80,194 @@
 															</div>
 														</div>
 													</div>
-													<div class="col-lg-6">
+													<div class="col-md-6">
 														<div class="text-center">
 															<h1 class="h4 text-gray-900 mt-2">Detalles del robo</h1>    
 														</div>
-														<div class="p-5">
+														<div class="p-4">
 															<div class="form-group">
 																<label for="seccion">Sección</label>
-																<select name="seccion" class="form-control  p-1" required="required">
+																<!-- <select name="seccion" class="form-control  p-1" required="required">
 																	<option value="">Seleccione...</option>
 																	<option value="BATERIA">Batería</option>
 																	<option value="ENGORDE">Engorde</option>
 																	<option value="MATERNIDAD">Maternidad</option>
 																	<option value="RECRIA">Recría</option>
-																</select>
+																</select> -->
+																<div class="container">
+																	<div class="row">
+																		<div class="dual-list list-left col-md-5">
+																			<div class="well">
+																				<ul class="list-group">
+																					<li class="list-group-item bat">Batería</li>
+																					<li class="list-group-item eng">Engorde</li>
+																					<li class="list-group-item mat">Maternidad</li>
+																					<li class="list-group-item rec">Recría</li>
+																				</ul>
+																			</div>
+																		</div>
+																		<div class="list-arrows col-md-1 text-center">
+																			<button type="button" class="btn btn-primary btn-sm move-right">
+																				<span class="fas fa-chevron-right"></span>
+																			</button>
+																			<button type="button" class="btn btn-outline-secondary btn-sm move-left">
+																				<span class="fas fa-chevron-left"></span>
+																			</button>
+																		</div>
+																		<div class="dual-list list-right col-md-5">
+																			<div class="well">
+																				<ul class="list-group">
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																</div>
 															</div>
-															<div class="form-group row">
+															<!-- contenido del Modal BATERÍA -->
+															<div class="modal fade" id="bateriaModal" tabindex="-1" role="dialog" aria-labelledby="bateriaModal">
+																<div class="modal-dialog" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h4 class="modal-title">Seccion Bateria</h4>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+																		</div>
+																		<div class="modal-body">
+																			<p>Indique la información</p>
+																			<div class="p-1">
+																				<div class="form-group row">
+																					<div class="col-sm-6 mb-3 mb-sm-0">
+																						<label for="cantidad_B">Cantidad de cerdos</label>
+																						<input type="number" name="cantidad_B" class="form-control" id="cantidad_B">
+																					</div>
+																					<div class="col-sm-6 mb-3 mb-sm-0">
+																						<label for="kilos_B">Total de kilos</label>
+																						<input type="number" name="kilos_B" class="form-control" id="kilos_B">
+																					</div>
+																				</div>
+																				<div class="form-group">
+																					<label for="ubicacion_B">Ubicación</label>
+																					<textarea name="ubicacion_B" id="ubicacion_B" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);"></textarea>
+																				</div> 
+																			</div>
+																		</div>
+																		<div class="modal-footer">
+																			<!-- <a class="btn btn-primary" href="#">Agregar</a> -->
+																			<button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
+																			<button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!-- End of contenido del Modal BATERIA -->
+															<!-- contenido del Modal ENGORDE -->
+															<div class="modal fade" id="engordeModal" tabindex="-1" role="dialog" aria-labelledby="engordeModal">
+																<div class="modal-dialog" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h4 class="modal-title">Seccion Engorde</h4>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+																		</div>
+																		<div class="modal-body">
+																			<p>Indique la información</p>
+																			<div class="p-1">
+																				<div class="form-group row">
+																					<div class="col-sm-6 mb-3 mb-sm-0">
+																						<label for="cantidad_E">Cantidad de cerdos</label>
+																						<input type="number" name="cantidad_E" class="form-control" id="cantidad_E">
+																					</div>
+																					<div class="col-sm-6 mb-3 mb-sm-0">
+																						<label for="kilos_E">Total de kilos</label>
+																						<input type="number_E" name="kilos_E" class="form-control" id="kilos_E">
+																					</div>
+																				</div>
+																				<div class="form-group">
+																					<label for="ubicacion_E">Ubicación</label>
+																					<textarea name="ubicacion_E" id="ubicacion_E" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);"></textarea>
+																				</div> 
+																			</div>
+																		</div>
+																		<div class="modal-footer">
+																			<!-- <a class="btn btn-primary" href="">Agregar</a> -->
+																			<button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
+																			<button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!-- End of contenido del Modal ENGORDE -->
+															<!-- contenido del Modal MATERNIDAD -->
+															<div class="modal fade" id="maternidadModal" tabindex="-1" role="dialog" aria-labelledby="maternidadModal">
+																<div class="modal-dialog" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h4 class="modal-title">Seccion Maternidad</h4>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+																		</div>
+																		<div class="modal-body">
+																			<p>Indique la información</p>
+																			<div class="p-1">
+																				<div class="form-group row">
+																					<div class="col-sm-6 mb-3 mb-sm-0">
+																						<label for="cantidad_M">Cantidad de cerdos</label>
+																						<input type="number" name="cantidad_M" class="form-control" id="cantidad_M">
+																					</div>
+																					<div class="col-sm-6 mb-3 mb-sm-0">
+																						<label for="kilos_M">Total de kilos</label>
+																						<input type="number" name="kilos_M" class="form-control" id="kilos_M">
+																					</div>
+																				</div>
+																				<div class="form-group">
+																					<label for="ubicacion_M">Ubicación</label>
+																					<textarea name="ubicacion_M" id="ubicacion_M" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);"></textarea>
+																				</div> 
+																			</div>
+																		</div>
+																		<div class="modal-footer">
+																			<!-- <a class="btn btn-primary" href="">Agregar</a> -->
+																			<button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
+																			<button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!-- End of contenido del Modal MATERNIDAD -->
+															<!-- contenido del Modal RECRIA -->
+															<div class="modal fade" id="recriaModal" tabindex="-1" role="dialog" aria-labelledby="recriaModal">
+																<div class="modal-dialog" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h4 class="modal-title">Seccion Recría</h4>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+																		</div>
+																		<div class="modal-body">
+																			<p>Indique la información</p>
+																			<div class="p-1">
+																				<div class="form-group row">
+																					<div class="col-sm-6 mb-3 mb-sm-0">
+																						<label for="cantidad_R">Cantidad de cerdos</label>
+																						<input type="number" name="cantidad_R" class="form-control" id="cantidad_R">
+																					</div>
+																					<div class="col-sm-6 mb-3 mb-sm-0">
+																						<label for="kilos_R">Total de kilos</label>
+																						<input type="number" name="kilos_R" class="form-control" id="kilos_R">
+																					</div>
+																				</div>
+																				<div class="form-group">
+																					<label for="ubicacion_R">Ubicación</label>
+																					<textarea name="ubicacion_R" id="ubicacion_R" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);"></textarea>
+																				</div> 
+																			</div>
+																		</div>
+																		<div class="modal-footer">
+																			<!-- <a class="btn btn-primary" href="">Agregar</a> -->
+																			<button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
+																			<button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!-- End of contenido del Modal ENGORDE -->
+															<!-- <div class="form-group row">
 																<div class="col-sm-6 mb-3 mb-sm-0">
 																	<label for="cantidad">Cantidad de cerdos</label>
 																	<input type="number" name="cantidad" class="form-control" id="cantidad">
@@ -108,9 +280,11 @@
 															<div class="form-group">
 																<label for="ubicacion">Ubicación</label>
 																<textarea name="ubicacion" id="ubicacion" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);"></textarea>
-															</div>
+															</div> -->
 														</div><!-- End of p-5 class div -->
+														
 													</div><!-- End of  div class col-lg-6 -->
+													
 												</div><!-- End of div class row -->
 												<hr>
 												<div class="form-group" style="margin-left: 40%;">
