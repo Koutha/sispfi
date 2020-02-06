@@ -73,8 +73,8 @@
   <script src="assets/js/demo/chart-pie-demo.js"></script>
   <script src="assets/js/demo/datatables-demo.js"></script>
   <script src="assets/js/valida.js"></script>
-  <script type="text/javascript">
-    $('#editUserModal').on('show.bs.modal', function (event) {
+  <script type="text/javascript"> //script para pasarle el atributo "id" al modal
+  $('#editUserModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
     var recipient = button.data('id'); // Extract info from data-* attributes
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -82,7 +82,7 @@
     var modal = $(this);
     modal.find('a.btn.btn-warning').attr('href', recipient);
   });
-    $('#editRadioModal').on('show.bs.modal', function (event) {
+  $('#editRadioModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
     var recipient = button.data('id'); // Extract info from data-* attributes
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -92,25 +92,27 @@
   });
 </script>
 
-<script type="text/javascript">
-  $(function () {
-    $('#fecha_hecho').datetimepicker({
-      useCurrent: false
-    });
-    $('#fecha_reporte').datetimepicker({
-      useCurrent: false
-    });
+<script type="text/javascript"> //script para inicializar el pluggin para la fecha
+$(function () {
+  $('#fecha_hecho').datetimepicker({
+    useCurrent: false
+  });
+  $('#fecha_reporte').datetimepicker({
+    useCurrent: false
+  });
+    //vincular las fechas fecha_reporte no sea menor a la fecha_hecho
     $("#fecha_hecho").on("change.datetimepicker", function (e) {
       $('#fecha_reporte').datetimepicker('minDate', e.date);
     });
+    //vincular las fechas fecha_hecho no sea mayor a la del reporte
     $("#fecha_reporte").on("change.datetimepicker", function (e) {
       $('#fecha_hecho').datetimepicker('maxDate', e.date);
     });
   });
 </script>
 
-<script type="text/javascript">
-  $(function () {
+<script type="text/javascript"> //script para seleccionar seccion del robo
+$(function () {
     //seleccionar opciones
     $('body').on('click', '.list-group .list-group-item', function () {
       var $checkBox = $(this);
@@ -119,11 +121,67 @@
         $(this).toggleClass('active');
       }
     });
-    //modal
+    //cargar el modal del item seleccionado al hacer click para pasarlo al lado derecho
+    $('.list-arrows button').click(function () {
+      var $b = $(this), itemLeft = '';
+      if ($b.hasClass('move-right')) {
+        itemLeft = $('.list-left ul li.active');
+        if (itemLeft.hasClass('bat')) {
+          $('#bateriaModal').modal();
+          $('#Add').on('click', function(){
+            //activar inputs aqui
+            //meter validaciones a los campos aqui
+            var itemAdd = $('.list-left ul li.active');
+            itemAdd.toggleClass('active');
+            itemAdd.clone().appendTo('.list-right ul');
+            itemAdd.remove();
+          });
+          // $('#Dismiss').on('click', function(){
+          //   itemLeft = $('.list-right ul li.active');
+          //   itemLeft.toggleClass('active');
+          //   itemLeft.clone().appendTo('.list-left ul');
+          //   itemLeft.remove();
+          // });
+        }else if (itemLeft.hasClass('eng')){
+          $('#engordeModal').modal();
+          $('#engordeModal .modal-footer .btn-primary').on('click', function(){
+            //activar inputs aqui
+            //meter validaciones a los campos aqui
+            var itemAdd = $('.list-left ul li.active');
+            itemAdd.toggleClass('active');
+            itemAdd.clone().appendTo('.list-right ul');
+            itemAdd.remove();
+          });
+        }else if (itemLeft.hasClass('mat')) {
+          $('#maternidadModal').modal();
+          $('#maternidadModal .modal-footer .btn-primary').on('click', function(){
+            //activar inputs aqui
+            //meter validaciones a los campos aqui
+            var itemAdd = $('.list-left ul li.active');
+            itemAdd.toggleClass('active');
+            itemAdd.clone().appendTo('.list-right ul');
+            itemAdd.remove();
+          });
+        }else if (itemLeft.hasClass('rec')) {
+          $('#recriaModal').modal();
+          $('#recriaModal .modal-footer .btn-primary').on('click', function(){
+            //activar inputs aqui
+            //meter validaciones a los campos aqui
+            var itemAdd = $('.list-left ul li.active');
+            itemAdd.toggleClass('active');
+            itemAdd.clone().appendTo('.list-right ul');
+            itemAdd.remove();
+          });
+        }
+      } 
+    });
+
+    //cargar modal al hacer click en los items de la derecha
     $('body').on('click', '.list-right .list-group .list-group-item', function () {
       var $opt = $(this);
       if ($opt.hasClass('bat')) {
-          $('#bateriaModal').modal();
+        $('#bateriaModal').modal();
+          // $('[name=bateria]').prop("disabled",  false); //activar el input para que sea enviado por post
         }else if ($opt.hasClass('eng')){
           $('#engordeModal').modal();
         }else if ($opt.hasClass('mat')) {
@@ -131,36 +189,22 @@
         }else if ($opt.hasClass('rec')) {
           $('#recriaModal').modal();
         }
-    });
-    $('.list-arrows button').click(function () {
-      // $('#bateriaModal').modal()
-      var $b = $(this), modal = '';
-      if ($b.hasClass('move-right')) {
-        modal = $('.list-left ul li.active');
-        if (modal.hasClass('bat')) {
-          $('#bateriaModal').modal();
-        }else if (modal.hasClass('eng')){
-          $('#engordeModal').modal();
-        }else if (modal.hasClass('mat')) {
-          $('#maternidadModal').modal();
-        }else if (modal.hasClass('rec')) {
-          $('#recriaModal').modal();
-        }
-      } 
-    });
+      });
+
     //pasar a izquierda o derecha
     $('.list-arrows button').click(function () {
       var $button = $(this), actives = '';
       if ($button.hasClass('move-left')) {
+        //desactivar inputs aqui
         actives = $('.list-right ul li.active');
         actives.toggleClass('active');
         actives.clone().appendTo('.list-left ul');
         actives.remove();
-      } else if ($button.hasClass('move-right')) {
+      } /*else if ($button.hasClass('move-right')) {
         actives = $('.list-left ul li.active');
         actives.clone().appendTo('.list-right ul');
         actives.remove();
-      }
+      }*/
     });
   });
 </script>

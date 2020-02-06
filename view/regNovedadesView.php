@@ -28,6 +28,7 @@
 												<div class="col-md-6">
 													<div class="text-center">
 														<h1 class="h4 text-gray-900 mt-2">Datos de la Novedad</h1>
+														<hr>
 														<?php if (isset($_SESSION['regNovedades'])&&$_SESSION['regNovedades']==1) {?>
 															<div class="alert alert-success alert-dismissible">
 																<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -35,7 +36,7 @@
 															</div>
 															<?php unset($_SESSION['regNovedades']);} ?>    
 														</div>
-														<div class="p-5">
+														<div class="p-4">
 															<div class="form-group">
 																<label for="lugar">Lugar</label>
 																<select name="lugar" class="form-control selectpicker show-tick" required="required" id="lugar" data-live-search="true" title="Seleccione un lugar">
@@ -54,7 +55,7 @@
 																<div class="col-sm-6">
 																	<label for="fecha_hecho">Fecha y hora de la novedad</label>
 																	<div class="input-group date" id="fecha_hecho" data-target-input="nearest">
-																		<input type="text" name="fecha_hecho" id="fecha_hecho" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_hecho" autocomplete="off" value="<?php echo isset($_POST['fecha_hecho']) ? $_POST['fecha_hecho']:""; ?>">
+																		<input type="text" name="fecha_hecho" id="fecha_hecho" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_hecho" autocomplete="off" value="<?php echo isset($_POST['fecha_hecho']) ? $_POST['fecha_hecho']:""; ?>" required>
 																		<div class="input-group-append" >
 																			<div class="input-group-text">
 																				<i class="fa fa-calendar"></i>
@@ -65,7 +66,7 @@
 																<div class="col-sm-6">
 																	<label for="fecha_reporte">Fecha y hora del reporte</label>
 																	<div class="input-group date" id="fecha_reporte" data-target-input="nearest">
-																		<input type="text" name="fecha_reporte" id="fecha_reporte" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_reporte" autocomplete="off" value="<?php echo isset($_POST['fecha_reporte']) ? $_POST['fecha_reporte']:""; ?>">
+																		<input type="text" name="fecha_reporte" id="fecha_reporte" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_reporte" autocomplete="off" value="<?php echo isset($_POST['fecha_reporte']) ? $_POST['fecha_reporte']:""; ?>" required>
 																		<div class="input-group-append" >
 																			<div class="input-group-text">
 																				<i class="fa fa-calendar"></i>
@@ -76,13 +77,14 @@
 															</div>
 															<div class="form-group">
 																<label for="descripcion">Descripción</label>
-																<textarea name="descripcion" id="descripcion" class="form-control" rows="3" placeholder="Breve resumen del hecho ocurrido" autocomplete="off" onKeyUp="mayusculas(this);"></textarea>
+																<textarea name="descripcion" id="descripcion" class="form-control" rows="3" placeholder="Breve resumen del hecho ocurrido" autocomplete="off" onKeyUp="mayusculas(this);" required></textarea>
 															</div>
 														</div>
 													</div>
 													<div class="col-md-6">
 														<div class="text-center">
-															<h1 class="h4 text-gray-900 mt-2">Detalles del robo</h1>    
+															<h1 class="h4 text-gray-900 mt-2">Detalles del robo</h1>
+															<hr>    
 														</div>
 														<div class="p-4">
 															<div class="form-group">
@@ -134,6 +136,7 @@
 																		<div class="modal-body">
 																			<p>Indique la información</p>
 																			<div class="p-1">
+																				<input type="hidden" name="bateria" value="Batería" disabled>
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_B">Cantidad de cerdos</label>
@@ -152,8 +155,8 @@
 																		</div>
 																		<div class="modal-footer">
 																			<!-- <a class="btn btn-primary" href="#">Agregar</a> -->
-																			<button type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
-																			<button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+																			<button type="button" class="btn btn-primary" data-dismiss="modal" id="Add">Agregar</button>
+																			<button type="button" class="btn btn-secondary" data-dismiss="modal" id="Dismiss">Volver</button>
 																		</div>
 																	</div>
 																</div>
@@ -170,6 +173,7 @@
 																		<div class="modal-body">
 																			<p>Indique la información</p>
 																			<div class="p-1">
+																				<input type="hidden" name="engorde" value="Engorde">
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_E">Cantidad de cerdos</label>
@@ -206,6 +210,7 @@
 																		<div class="modal-body">
 																			<p>Indique la información</p>
 																			<div class="p-1">
+																				<input type="hidden" name="maternidad" value="Maternidad">
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_M">Cantidad de cerdos</label>
@@ -242,6 +247,7 @@
 																		<div class="modal-body">
 																			<p>Indique la información</p>
 																			<div class="p-1">
+																				<input type="hidden" name="recria" value="Recría">
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_R">Cantidad de cerdos</label>

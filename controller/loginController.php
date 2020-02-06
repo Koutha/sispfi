@@ -13,6 +13,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'login'){
         if (password_verify($password, $query['password'])){//validar contraseña
             $_SESSION['loggedin']   = true;
             $_SESSION['username']   = $username;
+            $_SESSION['id_usuario'] = $query['id_usuario'];
             $_SESSION['nombres']    = $query['nombres'];
             $_SESSION['apellidos']  = $query['apellidos'];
             $_SESSION['cedula']     = $query['cedula'];
