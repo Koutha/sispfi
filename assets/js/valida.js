@@ -146,10 +146,10 @@ function letterNumberNoSpace(e) {
 
 	function getRandomColor() {
 	var letters = '0123456789ABCDEF'; /*For anyone who is looking to limit the spectrum to light colors, 
-																			you can set the letters to '789ABCD' and reduce the multiplier 
-																			to letters[Math.round(Math.random() * 6)];. Just to note that I removed
-																			 the low and high range just to avoid the extreme colors i.e. white and black.
-																		*/          
+										you can set the letters to '789ABCD' and reduce the multiplier 
+										to letters[Math.round(Math.random() * 6)];. Just to note that I removed
+										the low and high range just to avoid the extreme colors i.e. white and black.
+									*/          
 	var color = '#';                  
 	for (var i = 0; i < 6; i++) {
 		color += letters[Math.floor(Math.random() * 16)];

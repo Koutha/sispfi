@@ -23,7 +23,7 @@
 								<div class="card o-hidden border-0 shadow-lg my-5">
 									<div class="card-body p-0">
 										<!-- Nested Row within Card Body -->
-										<form action="" method="post" class="user" role="form" id="userForm">
+										<form action="" method="post" class="user" role="form" id="novedadesForm">
 											<div class="row">
 												<div class="col-md-6">
 													<div class="text-center">
@@ -84,7 +84,11 @@
 													<div class="col-md-6">
 														<div class="text-center">
 															<h1 class="h4 text-gray-900 mt-2">Detalles del robo</h1>
-															<hr>    
+															<hr>  
+															<div class="alert alert-success alert-dismissible fade show" style="display:none;" id="n1">
+																<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+																<strong>Registro Completado!</strong> La novedad se ha registrado exitosamente.
+															</div>  
 														</div>
 														<div class="p-4">
 															<div class="form-group">
@@ -140,23 +144,24 @@
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_B">Cantidad de cerdos</label>
-																						<input type="number" name="cantidad_B" class="form-control" id="cantidad_B">
+																						<input type="number" name="cantidad_B" class="form-control" id="cantidad_B" disabled>
 																					</div>
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="kilos_B">Total de kilos</label>
-																						<input type="number" name="kilos_B" class="form-control" id="kilos_B">
+																						<input type="number" name="kilos_B" class="form-control" id="kilos_B" disabled>
 																					</div>
 																				</div>
 																				<div class="form-group">
 																					<label for="ubicacion_B">Ubicación</label>
-																					<textarea name="ubicacion_B" id="ubicacion_B" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);"></textarea>
+																					<textarea name="ubicacion_B" id="ubicacion_B" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" disabled></textarea>
 																				</div> 
 																			</div>
 																		</div>
 																		<div class="modal-footer">
 																			<!-- <a class="btn btn-primary" href="#">Agregar</a> -->
 																			<button type="button" class="btn btn-primary" data-dismiss="modal" id="Add">Agregar</button>
-																			<button type="button" class="btn btn-secondary" data-dismiss="modal" id="Dismiss">Volver</button>
+																			<button type="button" class="btn btn-secondary" data-dismiss="modal" >Volver</button>
+																			<button type="button" class="btn btn-danger" data-dismiss="modal" id="dismissB">Quitar</button>
 																		</div>
 																	</div>
 																</div>
@@ -173,20 +178,20 @@
 																		<div class="modal-body">
 																			<p>Indique la información</p>
 																			<div class="p-1">
-																				<input type="hidden" name="engorde" value="Engorde">
+																				<input type="hidden" name="engorde" value="Engorde" disabled>
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_E">Cantidad de cerdos</label>
-																						<input type="number" name="cantidad_E" class="form-control" id="cantidad_E">
+																						<input type="number" name="cantidad_E" class="form-control" id="cantidad_E" disabled>
 																					</div>
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="kilos_E">Total de kilos</label>
-																						<input type="number_E" name="kilos_E" class="form-control" id="kilos_E">
+																						<input type="number_E" name="kilos_E" class="form-control" id="kilos_E" disabled>
 																					</div>
 																				</div>
 																				<div class="form-group">
 																					<label for="ubicacion_E">Ubicación</label>
-																					<textarea name="ubicacion_E" id="ubicacion_E" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);"></textarea>
+																					<textarea name="ubicacion_E" id="ubicacion_E" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" disabled></textarea>
 																				</div> 
 																			</div>
 																		</div>
@@ -210,20 +215,20 @@
 																		<div class="modal-body">
 																			<p>Indique la información</p>
 																			<div class="p-1">
-																				<input type="hidden" name="maternidad" value="Maternidad">
+																				<input type="hidden" name="maternidad" value="Maternidad" disabled>
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_M">Cantidad de cerdos</label>
-																						<input type="number" name="cantidad_M" class="form-control" id="cantidad_M">
+																						<input type="number" name="cantidad_M" class="form-control" id="cantidad_M" disabled>
 																					</div>
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="kilos_M">Total de kilos</label>
-																						<input type="number" name="kilos_M" class="form-control" id="kilos_M">
+																						<input type="number" name="kilos_M" class="form-control" id="kilos_M" disabled>
 																					</div>
 																				</div>
 																				<div class="form-group">
 																					<label for="ubicacion_M">Ubicación</label>
-																					<textarea name="ubicacion_M" id="ubicacion_M" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);"></textarea>
+																					<textarea name="ubicacion_M" id="ubicacion_M" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" disabled></textarea>
 																				</div> 
 																			</div>
 																		</div>
@@ -247,20 +252,20 @@
 																		<div class="modal-body">
 																			<p>Indique la información</p>
 																			<div class="p-1">
-																				<input type="hidden" name="recria" value="Recría">
+																				<input type="hidden" name="recria" value="Recría" disabled>
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_R">Cantidad de cerdos</label>
-																						<input type="number" name="cantidad_R" class="form-control" id="cantidad_R">
+																						<input type="number" name="cantidad_R" class="form-control" id="cantidad_R" disabled>
 																					</div>
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="kilos_R">Total de kilos</label>
-																						<input type="number" name="kilos_R" class="form-control" id="kilos_R">
+																						<input type="number" name="kilos_R" class="form-control" id="kilos_R" disabled>
 																					</div>
 																				</div>
 																				<div class="form-group">
 																					<label for="ubicacion_R">Ubicación</label>
-																					<textarea name="ubicacion_R" id="ubicacion_R" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);"></textarea>
+																					<textarea name="ubicacion_R" id="ubicacion_R" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" disabled></textarea>
 																				</div> 
 																			</div>
 																		</div>
@@ -272,21 +277,6 @@
 																	</div>
 																</div>
 															</div>
-															<!-- End of contenido del Modal ENGORDE -->
-															<!-- <div class="form-group row">
-																<div class="col-sm-6 mb-3 mb-sm-0">
-																	<label for="cantidad">Cantidad de cerdos</label>
-																	<input type="number" name="cantidad" class="form-control" id="cantidad">
-																</div>
-																<div class="col-sm-6 mb-3 mb-sm-0">
-																	<label for="kilos">Total de kilos</label>
-																	<input type="number" name="kilos" class="form-control" id="kilos">
-																</div>
-															</div>
-															<div class="form-group">
-																<label for="ubicacion">Ubicación</label>
-																<textarea name="ubicacion" id="ubicacion" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);"></textarea>
-															</div> -->
 														</div><!-- End of p-5 class div -->
 														
 													</div><!-- End of  div class col-lg-6 -->
