@@ -21,12 +21,19 @@ $(function () {
 				$('[name=ubicacion_B]').prop("disabled",  false);
 				$('#dismissB').hide(); //ocultar boton quitar
 				$('#Add').on('click', function(){ //pasa el item al lado derecho
-					$('[name=bateria]').prop("disabled",  false); //activar el input para que sea enviado por post
-					$('#dismissB').show(1500); //mostrar boton para quitar
 					//meter validaciones a los campos aqui
-					var itemAdd = $('.list-left ul li.active');
-					itemAdd.clone().appendTo('.list-right ul');
-					itemAdd.remove();
+					if (($('[name=cantidad_B]').val()=="")
+						||($('[name=kilos_B]').val()=="")
+						||($('[name=ubicacion_B]').val()=="")) {
+						$('#alert_B').show().fadeOut(1500);
+						return false;
+					}else{
+						$('[name=bateria]').prop("disabled",  false); //activar el input para que sea enviado por post
+						$('#dismissB').show(1500); //mostrar boton para quitar
+						var itemAdd = $('.list-left ul li.active');
+						itemAdd.clone().appendTo('.list-right ul');
+						itemAdd.remove();
+					}
 				});
 			}else if (itemLeft.hasClass('eng')){
 				$('#engordeModal').modal();
@@ -35,11 +42,18 @@ $(function () {
 				$('[name=kilos_E]').prop("disabled",  false);
 				$('[name=ubicacion_E]').prop("disabled",  false);
 				$('#engordeModal .modal-footer .btn-primary').on('click', function(){
-					$('[name=engorde]').prop("disabled",  false); //activar el input para que sea enviado por post
-					//meter validaciones a los campos aqui
-					var itemAdd = $('.list-left ul li.active');
-					itemAdd.clone().appendTo('.list-right ul');
-					itemAdd.remove();
+					//validaciones en los campos
+					if (($('[name=cantidad_E]').val()=="")
+						||($('[name=kilos_E]').val()=="")
+						||($('[name=ubicacion_E]').val()=="")) {
+						$('#alert_E').show().fadeOut(1500);
+						return false;
+					}else{
+						$('[name=engorde]').prop("disabled",  false); //activar el input para que sea enviado por post
+						var itemAdd = $('.list-left ul li.active');
+						itemAdd.clone().appendTo('.list-right ul');
+						itemAdd.remove();
+					}
 				});
 			}else if (itemLeft.hasClass('mat')) {
 				$('#maternidadModal').modal();
@@ -48,11 +62,18 @@ $(function () {
 				$('[name=kilos_M]').prop("disabled",  false);
 				$('[name=ubicacion_M]').prop("disabled",  false);
 				$('#maternidadModal .modal-footer .btn-primary').on('click', function(){
-					$('[name=maternidad]').prop("disabled",  false); //activar el input para que sea enviado por post
 					//meter validaciones a los campos aqui
-					var itemAdd = $('.list-left ul li.active');
-					itemAdd.clone().appendTo('.list-right ul');
-					itemAdd.remove();
+					if (($('[name=cantidad_M]').val()=="")
+						||($('[name=kilos_M]').val()=="")
+						||($('[name=ubicacion_M]').val()=="")) {
+						$('#alert_M').show().fadeOut(1500);
+						return false;
+					}else{
+						$('[name=maternidad]').prop("disabled",  false); //activar el input para que sea enviado por post
+						var itemAdd = $('.list-left ul li.active');
+						itemAdd.clone().appendTo('.list-right ul');
+						itemAdd.remove();
+					}
 				});
 			}else if (itemLeft.hasClass('rec')) {
 				$('#recriaModal').modal();
@@ -61,11 +82,18 @@ $(function () {
 				$('[name=kilos_R]').prop("disabled",  false);
 				$('[name=ubicacion_R]').prop("disabled",  false);
 				$('#recriaModal .modal-footer .btn-primary').on('click', function(){
-					$('[name=recria]').prop("disabled",  false); //activar el input para que sea enviado por post
 					//meter validaciones a los campos aqui
-					var itemAdd = $('.list-left ul li.active');
-					itemAdd.clone().appendTo('.list-right ul');
-					itemAdd.remove();
+					if (($('[name=cantidad_E]').val()=="")
+						||($('[name=kilos_E]').val()=="")
+						||($('[name=ubicacion_E]').val()=="")) {
+						$('#alert_E').show().fadeOut(1500);
+						return false;
+					}else{
+						$('[name=recria]').prop("disabled",  false); //activar el input para que sea enviado por post
+						var itemAdd = $('.list-left ul li.active');
+						itemAdd.clone().appendTo('.list-right ul');
+						itemAdd.remove();
+					}
 				});
 			}
 		} 

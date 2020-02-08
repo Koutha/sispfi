@@ -113,18 +113,20 @@ $(function () {
 <!-- //script para seleccionar seccion del robo -->
 <script src="assets/js/dualBoxList-bySmital.js"></script>
 <script type="text/javascript">
-	$('#novedadesForm').submit(function(event){
-		var attr = $('[name=bateria]').attr('disabled');
-		if (typeof attr !== typeof undefined && attr !== false) {
-    	$('#n1').fadeIn().fadeOut(10000);
-    	alert('faltan datos');
+$('#novedadesForm').submit(function(event){ //validar que haya al menos una seccion con datos
+	var attr_B = $('[name=bateria]').attr('disabled');
+	var attr_E = $('[name=engorde]').attr('disabled');
+	var attr_M = $('[name=maternidad]').attr('disabled');
+	var attr_R = $('[name=recria]').attr('disabled');
+	if ((typeof attr_B !== typeof undefined && attr_B !== false)
+			&&(typeof attr_E !== typeof undefined && attr_E !== false)
+				&&(typeof attr_M !== typeof undefined && attr_M !== false)
+					&&(typeof attr_R !== typeof undefined && attr_R !== false)) {
+		$('#n1').fadeIn().fadeOut(5000);
+    	// alert('faltan datos');
     	event.preventDefault();
-  	}
-  	
-  	/*$.fn.hasAttr = function(attr) { 
-  		var attribVal = this.attr(attr); 
-  		return (attribVal !== undefined) && (attribVal !== false); };*/
-});
+    }
+  });
 </script>
 </body>
 </html>

@@ -85,9 +85,8 @@
 														<div class="text-center">
 															<h1 class="h4 text-gray-900 mt-2">Detalles del robo</h1>
 															<hr>  
-															<div class="alert alert-success alert-dismissible fade show" style="display:none;" id="n1">
-																<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-																<strong>Registro Completado!</strong> La novedad se ha registrado exitosamente.
+															<div class="alert alert-warning  fade show" style="display:none;" id="n1">
+																<strong>Complete los datos!</strong> debe llenar los datos en al menos una seccion.
 															</div>  
 														</div>
 														<div class="p-4">
@@ -139,6 +138,9 @@
 																		</div>
 																		<div class="modal-body">
 																			<p>Indique la información</p>
+																			<div class="alert alert-warning  fade show" style="display:none;" id="alert_B">
+																				<strong>Complete los datos!</strong> Debe introducir los datos solicitados.
+																			</div>
 																			<div class="p-1">
 																				<input type="hidden" name="bateria" value="Batería" disabled>
 																				<div class="form-group row">
@@ -177,6 +179,9 @@
 																		</div>
 																		<div class="modal-body">
 																			<p>Indique la información</p>
+																			<div class="alert alert-warning  fade show" style="display:none;" id="alert_E">
+																				<strong>Complete los datos!</strong> Debe introducir los datos solicitados.
+																			</div>
 																			<div class="p-1">
 																				<input type="hidden" name="engorde" value="Engorde" disabled>
 																				<div class="form-group row">
@@ -214,6 +219,9 @@
 																		</div>
 																		<div class="modal-body">
 																			<p>Indique la información</p>
+																			<div class="alert alert-warning  fade show" style="display:none;" id="alert_M">
+																				<strong>Complete los datos!</strong> Debe introducir los datos solicitados.
+																			</div>
 																			<div class="p-1">
 																				<input type="hidden" name="maternidad" value="Maternidad" disabled>
 																				<div class="form-group row">
@@ -251,6 +259,9 @@
 																		</div>
 																		<div class="modal-body">
 																			<p>Indique la información</p>
+																			<div class="alert alert-warning" style="display:none;" id="alert_R">
+																				<strong>Complete los datos!</strong> Debe introducir los datos solicitados.
+																			</div>
 																			<div class="p-1">
 																				<input type="hidden" name="recria" value="Recría" disabled>
 																				<div class="form-group row">
