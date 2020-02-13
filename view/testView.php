@@ -19,6 +19,12 @@ foreach ($userObject->getAll() as $key => $value) {
 
 }
 
+//consultar por año
+$año = '2020';
+$sql = "select * from novedades where fecha_hecho between ".$año."'-01-01' and timestamp ".$año."'-01-01' + interval '1 year'"
+//consultar por mes
+$mes = '2020-01-01'
+$sql1 ="select * from novedades where date_trunc('month', fecha_hecho) = date_trunc ('month', timestamp '".$mes."')"
 echo '<br>';
 echo '<br>';
 require_once('models/novedadesModel.php');

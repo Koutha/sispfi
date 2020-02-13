@@ -82,68 +82,72 @@
 									</div>
 								</li>
 							</ul>
-							<!-- Dropdown -->
-						<!-- <ul class="navbar-nav" style="height: 45px;">
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color: #3a3b45;width: 197px;">Registrar</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item <?php if(isset($_GET['do'])&&$_GET['do']=='regRadio'){echo "active";} ?>" href="?do=regRadio">Portatil</a>
-									<a class="dropdown-item <?php if(isset($_GET['do'])&&$_GET['do']=='regRadioFE'){echo "active";} ?>" href="?do=regRadioFE">Estación Fija</a>
-								</div>
-							</li>
-						</ul> -->
-						<!-- <a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='regRadio'){echo "active";} ?>" href="?do=regRadio">Registrar</a> -->
-						<a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='radioList'){echo "active";} ?>" href="?do=radioList">Inventario</a>
-						<a class="collapse-item" href="?do=revRadio">Inspecciones</a>
+							<a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='radioList'){echo "active";} ?>" href="?do=radioList"><i class="fas fa-book"></i> Inventario</a>
+							<a class="collapse-item" href="?do=revRadio"><i class="fas fa-file-invoice"></i> Inspecciones</a>
+						</div>
 					</div>
-				</div>
-			</li>
-			<!-- Nav Item - Novedades Collapse Menu -->
-			<li class="nav-item <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"){echo "active";} ?>">
-				<a class="nav-link <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"){echo "";}else{echo "collapsed";} ?>" href="#" data-toggle="collapse" data-target="#collapseNovedades" aria-expanded="true" aria-controls="collapseNovedades">
-					<i class="fas fa-layer-group"></i>
-					<span>Novedades</span>
-				</a>
-				<div id="collapseNovedades" class="collapse <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"){echo "show";} ?>" aria-labelledby="headingNovedades" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Gestion de Novedades</h6>
-						<a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='regNovedades'){echo "active";} ?>" href="?do=regNovedades"><i class="fas fa-edit" style="color: rgba(0,0,0,.9);"></i> Registrar</a>
-						
+				</li>
+				<!-- Nav Item - Novedades Collapse Menu -->
+				<li class="nav-item <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"){echo "active";} ?>">
+					<a class="nav-link <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"){echo "";}else{echo "collapsed";} ?>" href="#" data-toggle="collapse" data-target="#collapseNovedades" aria-expanded="true" aria-controls="collapseNovedades">
+						<i class="fas fa-layer-group"></i>
+						<span>Novedades</span>
+					</a>
+					<div id="collapseNovedades" class="collapse <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"){echo "show";} ?>" aria-labelledby="headingNovedades" data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<h6 class="collapse-header">Gestion de Novedades</h6>
+							<ul class="navbar-nav accordion" id="accordionSidebarNV">
+								<li class="nav-item <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="novedadesList"){echo "active";} ?>" style="margin-bottom: 0px;">
+									<a class="nav-link <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="regNovedadesRobos"){echo "";}else{echo "collapsed";} ?>" href="#" data-toggle="collapse" data-target="#collapseNV" aria-expanded="true" aria-controls="collapse" style="padding-right: 17px;color: #1f1c1c;">
+										<i class="fas fa-edit" style="color: rgba(0,0,0,.9);"></i>
+										<span>Registrar</span>
+									</a>
+									<div id="collapseNV" class="collapse <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="regNovedadesRobos"){echo "show";} ?>" aria-labelledby="headingNV" data-parent="#accordionSidebarNV">
+										<div class="bg-white py-2 collapse-inner rounded">
+											<h6 class="collapse-header">Tipo de robo</h6>
+											<a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='regNovedades'){echo "active";} ?>" href="?do=regNovedades"><i class="fas fa-piggy-bank"></i> Robo de cerdos</a>
+											<a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='regNovedadesRobos'){echo "active";} ?>" href="?do=regNovedadesRobos"><i class="fas fa-business-time"></i> Materiales y otros</a>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<!-- <a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='regNovedades'){echo "active";} ?>" href="?do=regNovedades"><i class="fas fa-edit" style="color: rgba(0,0,0,.9);"></i> Registrar</a> -->
+							<a class="collapse-item" href="?do=novedadesDetails"><i class="fas fa-book"></i> Consultas</a>
+							<a class="collapse-item" href="?do=novedadesReport"><i class="far fa-chart-bar"></i> Estadísticas</a>
+						</div>
 					</div>
-				</div>
-			</li>
-			<!-- Nav Item - Registros Collapse Menu -->
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRegistros" aria-expanded="true" aria-controls="collapseRegistros">
-					<i class="fas fa-fw fa-wrench"></i>
-					<span>Reportes Nocturnos</span>
-				</a>
-				<div id="collapseRegistros" class="collapse" aria-labelledby="headingRegistros" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Gestion de reportes</h6>
-						<a class="collapse-item" href="#">Novedades</a>
-						
+				</li>
+				<!-- Nav Item - Registros Collapse Menu -->
+				<li class="nav-item">
+					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRegistros" aria-expanded="true" aria-controls="collapseRegistros">
+						<i class="fas fa-fw fa-wrench"></i>
+						<span>Reportes Nocturnos</span>
+					</a>
+					<div id="collapseRegistros" class="collapse" aria-labelledby="headingRegistros" data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<h6 class="collapse-header">Gestion de reportes</h6>
+							<a class="collapse-item" href="#">Novedades</a>
+						</div>
 					</div>
-				</div>
-			</li>
-			<!-- Nav Item - Registros Collapse Menu -->
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEscoltas" aria-expanded="true" aria-controls="collapseEscoltas">
-					<i class="fas fa-fw fa-wrench"></i>
-					<span>Escoltas</span>
-				</a>
-				<div id="collapseEscoltas" class="collapse" aria-labelledby="headingEscoltas" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Gestion de Escoltas</h6>
-						<a class="collapse-item" href="#">Novedades</a>
+				</li>
+				<!-- Nav Item - Registros Collapse Menu -->
+				<li class="nav-item">
+					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEscoltas" aria-expanded="true" aria-controls="collapseEscoltas">
+						<i class="fas fa-fw fa-wrench"></i>
+						<span>Escoltas</span>
+					</a>
+					<div id="collapseEscoltas" class="collapse" aria-labelledby="headingEscoltas" data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<h6 class="collapse-header">Gestion de Escoltas</h6>
+							<a class="collapse-item" href="#">Novedades</a>
+						</div>
 					</div>
+				</li>
+				<!-- Divider -->
+				<hr class="sidebar-divider d-none d-md-block">
+				<!-- Sidebar Toggler (Sidebar) -->
+				<div class="text-center d-none d-md-inline">
+					<button class="rounded-circle border-0" id="sidebarToggle"></button>
 				</div>
-			</li>
-			<!-- Divider -->
-			<hr class="sidebar-divider d-none d-md-block">
-			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
-				<button class="rounded-circle border-0" id="sidebarToggle"></button>
-			</div>
-		</ul> 
+			</ul> 
 		<!-- End of Sidebar -->

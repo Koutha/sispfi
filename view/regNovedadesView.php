@@ -141,6 +141,9 @@
 																			<div class="alert alert-warning  fade show" style="display:none;" id="alert_B">
 																				<strong>Complete los datos!</strong> Debe introducir los datos solicitados.
 																			</div>
+																			<div class="alert alert-warning  fade show" style="display:none;" id="alert_B1">
+																				<strong>Los datos invalidos!</strong> Verifique que los datos sean correctos.
+																			</div>
 																			<div class="p-1">
 																				<input type="hidden" name="bateria" value="Batería" disabled>
 																				<div class="form-group row">
@@ -182,6 +185,9 @@
 																			<div class="alert alert-warning  fade show" style="display:none;" id="alert_E">
 																				<strong>Complete los datos!</strong> Debe introducir los datos solicitados.
 																			</div>
+																			<div class="alert alert-warning  fade show" style="display:none;" id="alert_E1">
+																				<strong>Los datos invalidos!</strong> Verifique que los datos sean correctos.
+																			</div>
 																			<div class="p-1">
 																				<input type="hidden" name="engorde" value="Engorde" disabled>
 																				<div class="form-group row">
@@ -222,6 +228,9 @@
 																			<div class="alert alert-warning  fade show" style="display:none;" id="alert_M">
 																				<strong>Complete los datos!</strong> Debe introducir los datos solicitados.
 																			</div>
+																			<div class="alert alert-warning  fade show" style="display:none;" id="alert_M1">
+																				<strong>Los datos invalidos!</strong> Verifique que los datos sean correctos.
+																			</div>
 																			<div class="p-1">
 																				<input type="hidden" name="maternidad" value="Maternidad" disabled>
 																				<div class="form-group row">
@@ -261,6 +270,9 @@
 																			<p>Indique la información</p>
 																			<div class="alert alert-warning" style="display:none;" id="alert_R">
 																				<strong>Complete los datos!</strong> Debe introducir los datos solicitados.
+																			</div>
+																			<div class="alert alert-warning  fade show" style="display:none;" id="alert_R1">
+																				<strong>Los datos invalidos!</strong> Verifique que los datos sean correctos.
 																			</div>
 																			<div class="p-1">
 																				<input type="hidden" name="recria" value="Recría" disabled>

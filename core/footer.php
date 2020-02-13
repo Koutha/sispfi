@@ -71,7 +71,9 @@
 
 	<script src="assets/js/demo/chart-area-demo.js"></script>
 	<script src="assets/js/demo/chart-pie-demo.js"></script>
+	<script src="assets/js/demo/chart-bar-demo.js"></script>
 	<script src="assets/js/demo/datatables-demo.js"></script>
+	<script src='assets/js/jspdf.min.js'></script>
 	<script src="assets/js/valida.js"></script>
 	<script type="text/javascript"> //script para pasarle el atributo "id" al modal
 	$('#editUserModal').on('show.bs.modal', function (event) {
@@ -95,11 +97,14 @@
 <script type="text/javascript"> //script para inicializar el pluggin para la fecha
 $(function () {
 	$('#fecha_hecho').datetimepicker({
-		useCurrent: false
+		useCurrent: false,
+		maxDate: new Date()
 	});
 	$('#fecha_reporte').datetimepicker({
 		useCurrent: false
 	});
+	// var d = new Date();
+	// $('#fecha_hecho').datetimepicker('maxDate', date());
 		//vincular las fechas fecha_reporte no sea menor a la fecha_hecho
 		$("#fecha_hecho").on("change.datetimepicker", function (e) {
 			$('#fecha_reporte').datetimepicker('minDate', e.date);
@@ -113,20 +118,15 @@ $(function () {
 <!-- //script para seleccionar seccion del robo -->
 <script src="assets/js/dualBoxList-bySmital.js"></script>
 <script type="text/javascript">
-$('#novedadesForm').submit(function(event){ //validar que haya al menos una seccion con datos
-	var attr_B = $('[name=bateria]').attr('disabled');
-	var attr_E = $('[name=engorde]').attr('disabled');
-	var attr_M = $('[name=maternidad]').attr('disabled');
-	var attr_R = $('[name=recria]').attr('disabled');
-	if ((typeof attr_B !== typeof undefined && attr_B !== false)
-			&&(typeof attr_E !== typeof undefined && attr_E !== false)
-				&&(typeof attr_M !== typeof undefined && attr_M !== false)
-					&&(typeof attr_R !== typeof undefined && attr_R !== false)) {
-		$('#n1').fadeIn().fadeOut(5000);
-    	// alert('faltan datos');
-    	event.preventDefault();
-    }
-  });
+	$('#printBarChart').on('click', function() {
+		var canvas = document.querySelector("#myBarChart");
+    	var canvas_img = canvas.toDataURL("image/png",1.0); //JPEG will not match background color
+    	var pdf = new jsPDF('landscape','in', 'letter'); //orientation, units, page size
+    	pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+    	pdf.autoPrint(); //print window automatically opened with pdf
+    	var blob = pdf.output("bloburl");
+    	window.open(blob);
+});
 </script>
 </body>
 </html>

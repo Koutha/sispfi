@@ -7,7 +7,6 @@ $(function () {
 			$(this).toggleClass('active');
 		}
 	});
-
 	//cargar el modal del item seleccionado al hacer click para pasarlo al lado derecho
 	$('.list-arrows button').click(function () {
 		var $b = $(this), itemLeft = '';
@@ -25,14 +24,17 @@ $(function () {
 					if (($('[name=cantidad_B]').val()=="")
 						||($('[name=kilos_B]').val()=="")
 						||($('[name=ubicacion_B]').val()=="")) {
-						$('#alert_B').show().fadeOut(1500);
+						$('#alert_B').show().fadeOut(2000);
 						return false;
-					}else{
-						$('[name=bateria]').prop("disabled",  false); //activar el input para que sea enviado por post
-						$('#dismissB').show(1500); //mostrar boton para quitar
-						var itemAdd = $('.list-left ul li.active');
-						itemAdd.clone().appendTo('.list-right ul');
-						itemAdd.remove();
+					}else if(parseInt($('[name=cantidad_B]').val()) >= parseInt($('[name=kilos_B]').val())){
+						$('#alert_B1').show().fadeOut(2000);
+						return false;
+						}else{
+							$('[name=bateria]').prop("disabled",  false); //activar el input para que sea enviado por post
+							$('#dismissB').show(2000); //mostrar boton para quitar
+							var itemAdd = $('.list-left ul li.active');
+							itemAdd.clone().appendTo('.list-right ul');
+							itemAdd.remove();
 					}
 				});
 			}else if (itemLeft.hasClass('eng')){
@@ -46,14 +48,17 @@ $(function () {
 					if (($('[name=cantidad_E]').val()=="")
 						||($('[name=kilos_E]').val()=="")
 						||($('[name=ubicacion_E]').val()=="")) {
-						$('#alert_E').show().fadeOut(1500);
+						$('#alert_E').show().fadeOut(2000);
 						return false;
-					}else{
-						$('[name=engorde]').prop("disabled",  false); //activar el input para que sea enviado por post
-						var itemAdd = $('.list-left ul li.active');
-						itemAdd.clone().appendTo('.list-right ul');
-						itemAdd.remove();
-					}
+					}else if(parseInt($('[name=cantidad_E]').val()) >= parseInt($('[name=kilos_E]').val())){
+							$('#alert_E1').show().fadeOut(2000);
+							return false;
+						}else{
+							$('[name=engorde]').prop("disabled",  false); //activar el input para que sea enviado por post
+							var itemAdd = $('.list-left ul li.active');
+							itemAdd.clone().appendTo('.list-right ul');
+							itemAdd.remove();
+						}
 				});
 			}else if (itemLeft.hasClass('mat')) {
 				$('#maternidadModal').modal();
@@ -65,15 +70,18 @@ $(function () {
 					//meter validaciones a los campos aqui
 					if (($('[name=cantidad_M]').val()=="")
 						||($('[name=kilos_M]').val()=="")
-						||($('[name=ubicacion_M]').val()=="")) {
-						$('#alert_M').show().fadeOut(1500);
+						||($('[name=ubicacion_M]').val()=="")){
+						$('#alert_M').show().fadeOut(2000);
 						return false;
-					}else{
-						$('[name=maternidad]').prop("disabled",  false); //activar el input para que sea enviado por post
-						var itemAdd = $('.list-left ul li.active');
-						itemAdd.clone().appendTo('.list-right ul');
-						itemAdd.remove();
-					}
+					}else if(parseInt($('[name=cantidad_M]').val()) >= parseInt($('[name=kilos_M]').val())){
+							$('#alert_M1').show().fadeOut(2000);
+							return false;
+						}else{
+							$('[name=maternidad]').prop("disabled",  false); //activar el input para que sea enviado por post
+							var itemAdd = $('.list-left ul li.active');
+							itemAdd.clone().appendTo('.list-right ul');
+							itemAdd.remove();
+						}
 				});
 			}else if (itemLeft.hasClass('rec')) {
 				$('#recriaModal').modal();
@@ -83,12 +91,15 @@ $(function () {
 				$('[name=ubicacion_R]').prop("disabled",  false);
 				$('#recriaModal .modal-footer .btn-primary').on('click', function(){
 					//meter validaciones a los campos aqui
-					if (($('[name=cantidad_E]').val()=="")
-						||($('[name=kilos_E]').val()=="")
-						||($('[name=ubicacion_E]').val()=="")) {
-						$('#alert_E').show().fadeOut(1500);
+					if (($('[name=cantidad_R]').val()=="")
+						||($('[name=kilos_R]').val()=="")
+						||($('[name=ubicacion_R]').val()=="")) {
+						$('#alert_R').show().fadeOut(2000);
 						return false;
-					}else{
+					}else if(parseInt($('[name=cantidad_R]').val()) >= parseInt($('[name=kilos_R]').val())){
+							$('#alert_R1').show().fadeOut(2000);
+							return false;
+						}else{
 						$('[name=recria]').prop("disabled",  false); //activar el input para que sea enviado por post
 						var itemAdd = $('.list-left ul li.active');
 						itemAdd.clone().appendTo('.list-right ul');
@@ -98,7 +109,6 @@ $(function () {
 			}
 		} 
 	});
-
 	//cargar modal al hacer click en los items cuando estan del lado derecho
 	$('body').on('click', '.list-right .list-group .list-group-item', function () {
 		var $opt = $(this);
@@ -160,7 +170,6 @@ $(function () {
 			})
 		}
 	});
-
 	//pasar a izquierda o derecha
 	$('.list-arrows button').click(function () {
 		var $button = $(this), actives = '';
@@ -196,4 +205,19 @@ $(function () {
 			actives.remove();
 		}*/
 	});
+	
+	$('#novedadesForm').submit(function(event){ //validar que haya al menos una seccion con datos
+	var attr_B = $('[name=bateria]').attr('disabled');
+	var attr_E = $('[name=engorde]').attr('disabled');
+	var attr_M = $('[name=maternidad]').attr('disabled');
+	var attr_R = $('[name=recria]').attr('disabled');
+	if ((typeof attr_B !== typeof undefined && attr_B !== false)
+			&&(typeof attr_E !== typeof undefined && attr_E !== false)
+				&&(typeof attr_M !== typeof undefined && attr_M !== false)
+					&&(typeof attr_R !== typeof undefined && attr_R !== false)) {
+		$('#n1').fadeIn().fadeOut(5000);
+    	// alert('faltan datos');
+    	event.preventDefault();
+    }
+  });
 });
