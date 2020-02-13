@@ -2,23 +2,7 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 var defaultLegendClickHandler = Chart.defaults.global.legend.onClick;
-var newLegendClickHandler = function (e, legendItem) {
-    var index = legendItem.datasetIndex;
 
-    if (index > 1) {
-        // Do the original logic
-        defaultLegendClickHandler(e, legendItem);
-    } else {
-        let ci = this.chart;
-        [
-            ci.getDatasetMeta(0),
-            ci.getDatasetMeta(1)
-        ].forEach(function(meta) {
-            meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
-        });
-        ci.update();
-    }
-};
 
 function number_format(number, decimals, dec_point, thousands_sep) {
   // *     example: number_format(1234.56, 2, ',', ' ');
@@ -59,7 +43,7 @@ var myBarChart = new Chart(ctx, {
       data: [4215, 5312, 6251, 7841, 9821, 14984, 4215, 5312, 6251, 7841, 9821, 14984],
     },{
       label: "Año 2020",
-      data: [14984, 9821, 7841, 6251, 5312, 4215, 14984, 9821, 7841, 6251, 5312, 4215],
+      data: [14984, 9821, 7841, 6251, 5312, 4215, 15000, 9821, 7841, 6251, 5312, 4215],
     }],
   },
   options: {
@@ -113,7 +97,7 @@ var myBarChart = new Chart(ctx, {
         padding: 30,
 
       },
-      // onClick: newLegendClickHandler
+     
     },
     tooltips: {
       enable: true
@@ -129,7 +113,7 @@ var myBarChart = new Chart(ctx, {
         ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
-        
+
         this.data.datasets.filter(dataset => !dataset._meta[0].hidden).forEach(function (dataset) {
           for (var i = 0; i < dataset.data.length; i++) {
             var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,

@@ -255,4 +255,32 @@ class novedadesClass extends baseClass{
 			echo $e->getMessage();
 		}
 	}
+
+
+	public function totalMesAño ($año,$año1, $mes){
+	//total de animales y kilos por mes 1-12 -- EXTRACT(MONTH FROM fecha_hecho) = 1 -- de un año dado 
+		try {
+			$sql=	"SELECT sum(cantidad) as total_cerdos, sum(kilos) as total_kilos FROM robo_cerdo rc
+						JOIN (select * from (SELECT * FROM novedades 
+						WHERE fecha_hecho 
+						BETWEEN '$año' AND timestamp '$año1' + interval '1 year') nov_año
+						WHERE EXTRACT(MONTH FROM fecha_hecho) = '$mes') nov_mes ON rc.id_novedades = nov_mes.id_novedades";
+			$conn = $this->getConexion();
+			// $query=$conn->prepare($sql);
+			// $query->bindParam(1, $año,PDO::PARAM_STR);
+			// $query->bindParam(2, $año1, PDO::PARAM_STR);
+			// $query->bindParam(3, $mes, PDO::PARAM_INT);
+			// $query->execute();
+			$query=$conn->query($sql);
+			if($row = $query->fetch(PDO::FETCH_ASSOC)){
+				$result= $row;
+				return $result;
+			}else{
+				return 0;
+			}
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+		}
+
+	}
 } ?>
