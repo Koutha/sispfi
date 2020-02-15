@@ -16,9 +16,9 @@
 					</div>
 					
 					<!-- <h4>Registrar Estación fija</h4> -->
-					<div class="col-md-6">
-						<div class="card o-hidden border-0 shadow-lg my-5">
-							<div class="card-body p-0">
+					<div class="col-md-5">
+						<div class="card shadow my-4">
+							<div class="card-body">
 								<!-- Nested Row within Card Body -->
 								<form action="" method="post" class="user" role="form" id="novedadesForm">
 									<div class="row">
@@ -27,9 +27,9 @@
 												<h1 class="h4 text-gray-900 mt-2">Filtrar</h1>
 												<hr>
 											</div>
-											<div class="p-4">
+											<div class="p-3">
 												<div class="form-group">
-													<label for="lugar">Lugar</label>
+													<label for="lugar"><strong>Lugar</strong></label>
 													<select name="lugar" class="form-control selectpicker show-tick" required="required" id="lugar" data-live-search="true" title="Seleccione un lugar">
 														<option value="CEAPOCA">CEAPOCA</option>
 														<option value="LA PARREÑA">LA PARREÑA</option>
@@ -72,10 +72,10 @@
 										</div>
 									</div><!-- End of div class row -->
 									<hr>
-									<div class="form-group" style="margin-left: 40%;">
+									<div class="form-group" >
 										<div class="text-center">
-											<div class="col-sm-5">
-												<button type="submit" name="submit" value="novedadesReport" id="btnNovedadesReport" class="btn btn-primary btn-user btn-block">Buscar</button>
+											<div class="col-sm-12">
+												<button type="submit" name="submit" value="novedadesReport" id="btnNovedadesReport" class="btn btn-primary btn-user">Buscar</button>
 											</div>
 										</div>
 									</div>

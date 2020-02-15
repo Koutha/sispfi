@@ -55,13 +55,46 @@ echo '<br>';
 echo '<br>';
 require_once('models/novedadesModel.php');
 $novObject = new novedadesClass();
-$novObject-> regNovedades();
-$year = '2020-01-01';
-$year1 = '2020-01-01';
+// $novObject-> regNovedades();
+$year = '2019-01-01';
 $mess = 1; 
-var_dump($novObject->totalMesAño($year, $year1, $mess));
+var_dump($novObject->totalMesAño($year, $mess));
 // echo $novObject->getId_novedades();
+echo '<br>';
+echo '<br>';
+//$totalAño['Enero'] = $novObject->totalMesAño($year, $mess);
 
+for ($i=1; $i <= 12 ; $i++) { 
+	$totalAño[$i] = $novObject->totalMesAño($year, $i);
+}
+  
+ $year1 = '2020-01-01';
+ $year2 = '2019-01-01';
+  for ($i=1; $i <= 12 ; $i++) { 
+    $totalYear1[$i] = $novObject->totalMesAño($year1, $i);
+    $totalYear2[$i] = $novObject->totalMesAño($year2, $i);
+  }
+// data: [4215, 5312, 6251, 7841, 9821, 14984, 4215, 5312, 6251, 7841, 9821, 14984],
+
+foreach ($totalYear2 as $key => $value) {
+	if (!empty($value['total_kilos'])&&$key!=12) {
+		echo $value['total_kilos'].',';
+		
+	}elseif(!empty($value['total_kilos'])){
+		echo $value['total_kilos'];
+		
+	}elseif($key!=12){
+		echo '0,';
+		
+	}else{
+		echo '0';
+
+	}
+}
+
+
+
+// var_dump($totalYear1);
  ?>
 
 
