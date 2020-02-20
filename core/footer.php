@@ -47,6 +47,7 @@
 	<script src="assets/js/sb-admin-2.min.js"></script>
 	<!-- Page level plugins -->
 	<script src="assets/vendor/chart.js/Chart.min.js"></script>
+	<script src="assets/vendor/chart.js/chartjs-plugin-datalabels.min.js"></script>
 	<script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
 	<script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 	<script src="assets/vendor/datatables/dataTables.buttons.min.js"></script>
@@ -73,6 +74,8 @@
 	<script src="assets/js/demo/chart-pie-demo.js"></script> -->
 	<script src="assets/js/demo/chart-bar-demo.js"></script>
 	<script src="assets/js/demo/datatables-demo.js"></script>
+	
+	
 	<script src='assets/js/jspdf.min.js'></script>
 	<script src="assets/js/valida.js"></script>
 	<script type="text/javascript"> //script para pasarle el atributo "id" al modal
@@ -98,165 +101,64 @@
 $(function () {
 	$('#fecha_hecho').datetimepicker({
 		useCurrent: false,
-		maxDate: new Date()
+		maxDate: new Date().setMinutes(59)
 	});
 	$('#fecha_reporte').datetimepicker({
 		useCurrent: false
 	});
-	// var d = new Date();
-	// $('#fecha_hecho').datetimepicker('maxDate', date());
-		//vincular las fechas fecha_reporte no sea menor a la fecha_hecho
-		$("#fecha_hecho").on("change.datetimepicker", function (e) {
-			$('#fecha_reporte').datetimepicker('minDate', e.date);
-		});
-		//vincular las fechas fecha_hecho no sea mayor a la del reporte
-		$("#fecha_reporte").on("change.datetimepicker", function (e) {
-			$('#fecha_hecho').datetimepicker('maxDate', e.date);
-		});
+	$('#fecha_inicio').datetimepicker({
+		format: 'MM/YYYY',
+		useCurrent: false
 	});
+	$('#fecha_fin').datetimepicker({
+		format: 'MM/YYYY',
+		useCurrent: false
+	});
+	
+	//vincular las fechas fecha_reporte no sea menor a la fecha_hecho
+	$("#fecha_hecho").on("change.datetimepicker", function (e) {
+		$('#fecha_reporte').datetimepicker('minDate', e.date);
+	});
+	//vincular las fechas fecha_hecho no sea mayor a la del reporte
+	$("#fecha_reporte").on("change.datetimepicker", function (e) {
+		$('#fecha_hecho').datetimepicker('maxDate', e.date);
+	});
+	//vincular las fechas fecha_reporte no sea menor a la fecha_hecho
+	$("#fecha_inicio").on("change.datetimepicker", function (e) {
+		$('#fecha_fin').datetimepicker('minDate', e.date.add(1, 'years'));
+	});
+	//vincular las fechas fecha_hecho no sea mayor a la del reporte
+	$("#fecha_fin").on("change.datetimepicker", function (e) {
+		$('#fecha_inicio').datetimepicker('maxDate', e.date.subtract(1, 'years'));
+	});
+});
 </script>
+
 <!-- //script para seleccionar seccion del robo -->
 <script src="assets/js/dualBoxList-bySmital.js"></script>
-<script type="text/javascript">
-	$('#printBarChart').on('click', function() {
-		var canvas = document.querySelector("#myBarChart");
-    	var canvas_img = canvas.toDataURL("image/png",1.0); //JPEG will not match background color
-    	var pdf = new jsPDF('landscape','in', 'letter'); //orientation, units, page size
-    	pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
-    	pdf.autoPrint(); //print window automatically opened with pdf
-    	var blob = pdf.output("bloburl");
-    	window.open(blob);
+
+<script type="text/javascript"> //imprimir charts
+$('#printBarChart').on('click', function() {
+	var canvas = document.querySelector("#myBarChart");
+    var canvas_img = canvas.toDataURL("image/png",1.0); //JPEG will not match background color
+    var pdf = new jsPDF('landscape','in', 'letter'); //orientation, units, page size
+    pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+    pdf.autoPrint(); //print window automatically opened with pdf
+    var blob = pdf.output("bloburl");
+    window.open(blob);
+});
+$('#printBarChartG').on('click', function() {
+	var canvas = document.querySelector("#barChartGranjas");
+    var canvas_img = canvas.toDataURL("image/png",1.0); //JPEG will not match background color
+    var pdf = new jsPDF('landscape','in', 'letter'); //orientation, units, page size
+    pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+    pdf.autoPrint(); //print window automatically opened with pdf
+    var blob = pdf.output("bloburl");
+    window.open(blob);
 });
 </script>
 
 
-<script type="text/javascript">
-// Bar Chart Example
-var ctx = document.getElementById("myBarChart");
-var datos = {
-    labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-    datasets: [{
-      label: "Año 2019",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [<?php foreach ($totalYear1 as $key => $value) {
-                if (!empty($value['total_kilos'])&&$key!=12) {
-                  echo $value['total_kilos'].',';
-                }elseif(!empty($value['total_kilos'])){
-                  echo $value['total_kilos'];
-                }elseif($key!=12){
-                  echo '0,';
-                }else{
-                  echo '0';
-                }
-              }?>],
-    },{
-      label: "Año 2020",
-      data: [<?php foreach ($totalYear2 as $key => $value) {
-                if (!empty($value['total_kilos'])&&$key!=12) {
-                  echo $value['total_kilos'].',';
-                }elseif(!empty($value['total_kilos'])){
-                  echo $value['total_kilos'];
-                }elseif($key!=12){
-                  echo '0,';
-                }else{
-                  echo '0';
-                }
-              }?>],
-    }],
-  };
 
-var myBarChart = new Chart(ctx, {
-  type: 'bar',
-  data: datos, //variable declarada arriba y asignada con los datos
-  options: {
-    maintainAspectRatio: false,
-    layout: {
-      padding: {
-        left: 10,
-        right: 25,
-        top: 25,
-        bottom: 0
-      }
-    },
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'month'
-        },
-        gridLines: {
-          display: false,
-          drawBorder: false
-        },
-        ticks: {
-          maxTicksLimit: 12
-        },
-        maxBarThickness: 25,
-      }],
-      yAxes: [{
-        ticks: {
-          min: 0,
-          max: <?php echo $total1['total_kilos']+$total2['total_kilos']; ?>,
-          maxTicksLimit: 5,
-          padding: 10,
-          // Include a dollar sign in the ticks
-          callback: function(value, index, values) {
-            return  number_format(value);
-          }
-        },
-        gridLines: {
-          color: "rgb(234, 236, 244)",
-          zeroLineColor: "rgb(234, 236, 244)",
-          drawBorder: false,
-          borderDash: [2],
-          zeroLineBorderDash: [2]
-        }
-      }],
-    },
-    legend: {
-      display: true,
-      position: 'right',
-      labels: {
-        padding: 30,
-
-      },
-     
-    },
-    tooltips: {
-      enable: true
-    },
-    hover: {
-        animationDuration: 0
-    },
-    animation: {
-      duration: 500,
-      easing: "easeOutQuart",
-      onComplete: function () {
-        var ctx = this.chart.ctx;
-        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-
-        this.data.datasets.filter(dataset => !dataset._meta[0].hidden).forEach(function (dataset) {
-          for (var i = 0; i < dataset.data.length; i++) {
-            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
-            scale_max = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._yScale.maxHeight;
-            ctx.fillStyle = '#444';
-            var y_pos = model.y - 5;
-                        // Make sure data value does not get overflown and hidden
-                        // when the bar's value is too close to max value of scale
-                        // Note: The y value is reverse, it counts from top down
-                        if ((scale_max - model.y) / scale_max >= 0.93)
-                          y_pos = model.y + 20; 
-                        ctx.fillText(dataset.data[i], model.x, y_pos);
-                      }
-                    });               
-      }
-    }
-  }
-});
-
-</script>
 </body>
 </html>

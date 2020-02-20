@@ -305,6 +305,27 @@ class novedadesClass extends baseClass{
 	 	} catch (PDOException $e) {
 	 		echo $e->getMessage();
 	 	}
+	 }
 
+	 public function totalAñoGranjas ($año){
+	 //total de animales robados y total de kilos por año
+	 	try {
+	 		$sql = "SELECT sum(rc.cantidad) as total_cerdos , sum(rc.kilos) as total_kilos, lugar  
+	 				FROM robo_cerdo rc 
+					JOIN (SELECT * FROM novedades WHERE fecha_hecho BETWEEN '$año' AND timestamp '$año' + interval '1 year') nv 
+					ON rc.id_novedades = nv.id_novedades GROUP BY nv.lugar";
+			$conn = $this->getConexion();
+			$query=$conn->query($sql);
+			while($row = $query->fetch(PDO::FETCH_ASSOC)){
+				$result[] = $row;
+			}
+			if(!empty($result)){
+				return $result;
+			}else{
+				return 0;
+			}
+	 	} catch (PDOException $e) {
+	 		echo $e->getMessage();
+	 	}
 	 }
 } ?>

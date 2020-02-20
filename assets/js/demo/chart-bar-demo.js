@@ -29,107 +29,162 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-// Bar Chart Example
-/*var ctx = document.getElementById("myBarChart");
+// Bar Chart Total años
+var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
-  data: {
-    labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-    datasets: [{
-      label: "Año 2019",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984, 4215, 5312, 6251, 7841, 9821, 14984],
-    },{
-      label: "Año 2020",
-      data: [14984, 9821, 7841, 6251, 5312, 4215, 15000, 9821, 7841, 6251, 5312, 4215],
+  data: datos, //variable declarada arriba y asignada con los datos
+  options: {
+  plugins: {
+    datalabels :{
+      anchor: 'end',
+      align: 'top'
+    }
+  },
+  maintainAspectRatio: false,
+  layout: {
+    padding: {
+    left: 10,
+    right: 25,
+    top: 25,
+    bottom: 0
+    }
+  },
+  scales: {
+    xAxes: [{
+    time: {
+      unit: 'month'
+    },
+    gridLines: {
+      display: false,
+      drawBorder: false
+    },
+    ticks: {
+      maxTicksLimit: 13
+    },
+    maxBarThickness: 25,
+    }],
+    yAxes: [{
+    ticks: {
+      min: 0,
+      max: totalesGranjas, //variable declarada arriba y asignada con los datos
+      maxTicksLimit: 5,
+      padding: 10,
+      // Include a dollar sign in the ticks
+      callback: function(value, index, values) {
+      return  number_format(value)+' Kg';
+      }
+    },
+    gridLines: {
+      color: "rgb(234, 236, 244)",
+      zeroLineColor: "rgb(234, 236, 244)",
+      drawBorder: false,
+      borderDash: [2],
+      zeroLineBorderDash: [2]
+    }
     }],
   },
-  options: {
-    maintainAspectRatio: false,
-    layout: {
-      padding: {
-        left: 10,
-        right: 25,
-        top: 25,
-        bottom: 0
-      }
+  legend: {
+    display: true,
+    position: 'right',
+    labels: {
+    padding: 30,
     },
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'month'
-        },
-        gridLines: {
-          display: false,
-          drawBorder: false
-        },
-        ticks: {
-          maxTicksLimit: 12
-        },
-        maxBarThickness: 25,
-      }],
-      yAxes: [{
-        ticks: {
-          min: 0,
-          max: 15000,
-          maxTicksLimit: 5,
-          padding: 10,
-          // Include a dollar sign in the ticks
-          callback: function(value, index, values) {
-            return  number_format(value);
-          }
-        },
-        gridLines: {
-          color: "rgb(234, 236, 244)",
-          zeroLineColor: "rgb(234, 236, 244)",
-          drawBorder: false,
-          borderDash: [2],
-          zeroLineBorderDash: [2]
-        }
-      }],
-    },
-    legend: {
-      display: true,
-      position: 'right',
-      labels: {
-        padding: 30,
-
-      },
-     
-    },
-    tooltips: {
-      enable: true
-    },
-    hover: {
-        animationDuration: 0
-    },
-    animation: {
-      duration: 500,
-      easing: "easeOutQuart",
-      onComplete: function () {
-        var ctx = this.chart.ctx;
-        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-
-        this.data.datasets.filter(dataset => !dataset._meta[0].hidden).forEach(function (dataset) {
-          for (var i = 0; i < dataset.data.length; i++) {
-            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
-            scale_max = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._yScale.maxHeight;
-            ctx.fillStyle = '#444';
-            var y_pos = model.y - 5;
-                        // Make sure data value does not get overflown and hidden
-                        // when the bar's value is too close to max value of scale
-                        // Note: The y value is reverse, it counts from top down
-                        if ((scale_max - model.y) / scale_max >= 0.93)
-                          y_pos = model.y + 20; 
-                        ctx.fillText(dataset.data[i], model.x, y_pos);
-                      }
-                    });               
-      }
-    }
+  },
+  tooltips: {
+    enable: true
+  },
+  hover: {
+    animationDuration: 0
+  },
   }
 });
-*/
+// Bar Chart Total por granjas
+var ctxG = document.getElementById("barChartGranjas");
+var myBarChartGranjas = new Chart(ctxG, {
+  type: 'bar',
+  data: datosGranjas, //variable declarada arriba y asignada con los datos
+  options: {
+  plugins: {
+    datalabels :{
+      anchor: 'end',
+      align: 'top'
+    }
+  },
+  maintainAspectRatio: false,
+  layout: {
+    padding: {
+    left: 10,
+    right: 25,
+    top: 25,
+    bottom: 0
+    }
+  },
+  scales: {
+    xAxes: [{
+    time: {
+      unit: 'month'
+    },
+    gridLines: {
+      display: false,
+      drawBorder: false
+    },
+    ticks: {
+      maxTicksLimit: 10
+    },
+    maxBarThickness: 25,
+    }],
+    yAxes: [{
+    ticks: {
+      min: 0,
+      max: totalesGranjas,
+      maxTicksLimit: 5,
+      padding: 10,
+      // Include a dollar sign in the ticks
+      callback: function(value, index, values) {
+      return  number_format(value);
+      }
+    },
+    gridLines: {
+      color: "rgb(234, 236, 244)",
+      zeroLineColor: "rgb(234, 236, 244)",
+      drawBorder: false,
+      borderDash: [2],
+      zeroLineBorderDash: [2]
+    }
+    }],
+  },
+  legend: {
+    display: true,
+    position: 'right',
+    labels: {
+    padding: 30,
+
+    },
+   
+  },
+  tooltips: {
+    enable: true,
+    titleMarginBottom: 10,
+    titleFontColor: '#6e707e',
+    titleFontSize: 14,
+    backgroundColor: "rgb(255,255,255)",
+    bodyFontColor: "#858796",
+    borderColor: '#dddfeb',
+    borderWidth: 1,
+    xPadding: 15,
+    yPadding: 15,
+    displayColors: false,
+    caretPadding: 10,
+    callbacks: {
+      label: function(tooltipItem, chart) {
+        var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+        return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+ ' Kg';
+      }
+    }
+  },
+  hover: {
+    animationDuration: 0
+  },
+  }
+});

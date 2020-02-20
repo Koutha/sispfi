@@ -31,13 +31,18 @@ $sql2 = "SELECT * FROM robo_cerdo rc
 					BETWEEN '2020-01-01' AND timestamp '2020-01-01' + interval '1 year') nv 
 			ON rc.id_novedades = nv.id_novedades";
 
-//total de animales robados y total de kilos por año
+//
 $sql3 = "SELECT sum(cantidad) as total_cerdos, sum(kilos) as total_kilos FROM robo_cerdo rc 
 			JOIN 
 			(SELECT * FROM novedades 
 				WHERE fecha_hecho 
 					BETWEEN '2020-01-01' AND timestamp '2020-01-01' + interval '1 year') nv 
 			ON rc.id_novedades = nv.id_novedades";
+
+//total de animales robados y total de kilos por año por granjas
+$sql69 = "SELECT sum(rc.cantidad) as total_cerdos , sum(rc.kilos) as total_kilos, lugar  FROM robo_cerdo rc 
+JOIN (SELECT * FROM novedades WHERE fecha_hecho BETWEEN '2020-01-01' AND timestamp '2020-01-01' + interval '1 year') nv 
+ON rc.id_novedades = nv.id_novedades GROUP BY nv.lugar";
 
 //total de animales y kilos por mes 1-12 -- EXTRACT(MONTH FROM fecha_hecho) = 1 -- de un año dado 
 $sql4="SELECT sum(cantidad) as total_cerdos, sum(kilos) as total_kilos FROM robo_cerdo rc
@@ -74,7 +79,7 @@ for ($i=1; $i <= 12 ; $i++) {
     $totalYear1[$i] = $novObject->totalMesAño($year1, $i);
     $totalYear2[$i] = $novObject->totalMesAño($year2, $i);
   }
-// data: [4215, 5312, 6251, 7841, 9821, 14984, 4215, 5312, 6251, 7841, 9821, 14984],
+
 
 foreach ($totalYear2 as $key => $value) {
 	if (!empty($value['total_kilos'])&&$key!=12) {
@@ -91,9 +96,102 @@ foreach ($totalYear2 as $key => $value) {
 
 	}
 }
+echo '<br>';
+echo '<br>';
+echo 'total granjas por año <br>';
+var_dump($totalGranja1 = $novObject->totalAñoGranjas($year1)); 
 
-
-
+echo '<br>';
+echo '<br>';
+$totalAñoGranjas = $novObject->totalAñoGranjas($year1); 
+$valGranjas = Array("CEAPOCA"=>"0,",
+					"LA PARREÑA"=>"0,",
+					"LOS CERRITOS 1"=>"0,",
+					"LOS CERRITOS 2"=>"0,",
+					"MATACARMELERA"=>"0,",
+					"OJO DE AGUA"=>"0,",
+					"URIMAN 1"=>"0,",
+					"URIMAN 2"=>"0,",
+					"VILLA DE JULIA"=>"0");
+print_r($valGranjas);
+echo '<br>';
+echo '<br>';
+for ($i=0; $i < 9 ; $i++) { 
+	if (isset($totalAñoGranjas[$i])) {
+		switch ($totalAñoGranjas[$i]['lugar']) {
+			case 'CEAPOCA':
+				$valGranjas['CEAPOCA']=$totalAñoGranjas[$i]['total_kilos'].','; 
+				break;
+			case 'LA PARREÑA':
+				$valGranjas['CEAPOCA']=$totalAñoGranjas[$i]['total_kilos'].','; 
+				break;
+			case 'LOS CERRITOS 1':
+				$valGranjas['LOS CERRITOS 1']=$totalAñoGranjas[$i]['total_kilos'].','; 
+				break;
+			case 'LOS CERRITOS 2':
+				$valGranjas['LOS CERRITOS 2']=$totalAñoGranjas[$i]['total_kilos'].','; 
+				break;
+			case 'MATACARMELERA':
+				$valGranjas['MATACARMELERA']=$totalAñoGranjas[$i]['total_kilos'].','; 
+				break;
+			case 'OJO DE AGUA':
+				$valGranjas['OJO DE AGUA']=$totalAñoGranjas[$i]['total_kilos'].','; 
+				break;
+			case 'URIMAN 1':
+				$valGranjas['URIMAN 1']=$totalAñoGranjas[$i]['total_kilos'].','; 
+				break;
+			case 'URIMAN 2':
+				$valGranjas['URIMAN 2']=$totalAñoGranjas[$i]['total_kilos'].','; 
+				break;
+			case 'VILLA DE JULIA':
+				$valGranjas['VILLA DE JULIA']=$totalAñoGranjas[$i]['total_kilos']; 
+				break;
+			default:
+				echo '0,';
+				break;
+		}
+	}
+}
+print_r($valGranjas);
+echo '<br>';
+foreach ($valGranjas as $key => $value) {
+	echo $value;
+}
+echo '<br>';
+foreach ($totalAñoGranjas as $key => $value) {
+	switch ($value['lugar']) {
+		case 'CEAPOCA':
+			echo $value['total_kilos'].','; 
+			break;
+		case 'LA PARREÑA':
+			echo $value['total_kilos'].','; 
+			break;
+		case 'LOS CERRITOS 1':
+			echo $value['total_kilos'].','; 
+			break;
+		case 'LOS CERRITOS 2':
+			echo $value['total_kilos'].','; 
+			break;
+		case 'MATACARMELERA':
+			echo $value['total_kilos'].','; 
+			break;
+		case 'OJO DE AGUA':
+			echo $value['total_kilos'].','; 
+			break;
+		case 'URIMAN 1':
+			echo $value['total_kilos'].','; 
+			break;
+		case 'URIMAN 2':
+			echo $value['total_kilos'].','; 
+			break;
+		case 'VILLA DE JULIA':
+			echo $value['total_kilos'].','; 
+			break;
+		default:
+			echo '0,';
+			break;
+	}
+}
 // var_dump($totalYear1);
  ?>
 

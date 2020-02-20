@@ -16,7 +16,7 @@
 					</div>
 					
 					<!-- <h4>Registrar Estación fija</h4> -->
-					<div class="col-md-5">
+					<div class="col-sm-12 col-md-12 col-lg-5">
 						<div class="card shadow my-4">
 							<div class="card-body">
 								<!-- Nested Row within Card Body -->
@@ -46,9 +46,9 @@
 												<div class="form-group row">
 
 													<div class="col-sm-6">
-														<label for="fecha_hecho">Desde</label>
-														<div class="input-group date" id="fecha_hecho" data-target-input="nearest">
-															<input type="text" name="fecha_hecho" id="fecha_hecho" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_hecho" autocomplete="off" value="<?php echo isset($_POST['fecha_hecho']) ? $_POST['fecha_hecho']:""; ?>" required>
+														<label for="fecha_inicio">Desde</label>
+														<div class="input-group date" id="fecha_inicio" data-target-input="nearest">
+															<input type="text" name="fecha_inicio" id="fecha_inicio" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_inicio" autocomplete="off" value="<?php echo isset($_POST['fecha_inicio']) ? $_POST['fecha_inicio']:""; ?>" required>
 															<div class="input-group-append" >
 																<div class="input-group-text">
 																	<i class="fa fa-calendar"></i>
@@ -57,9 +57,9 @@
 														</div>
 													</div>
 													<div class="col-sm-6">
-														<label for="fecha_reporte">Hasta</label>
-														<div class="input-group date" id="fecha_reporte" data-target-input="nearest">
-															<input type="text" name="fecha_reporte" id="fecha_reporte" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_reporte" autocomplete="off" value="<?php echo isset($_POST['fecha_reporte']) ? $_POST['fecha_reporte']:""; ?>" required>
+														<label for="fecha_fin">Hasta</label>
+														<div class="input-group date" id="fecha_fin" data-target-input="nearest">
+															<input type="text" name="fecha_fin" id="fecha_fin" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_fin" autocomplete="off" value="<?php echo isset($_POST['fecha_fin']) ? $_POST['fecha_fin']:""; ?>" required>
 															<div class="input-group-append" >
 																<div class="input-group-text">
 																	<i class="fa fa-calendar"></i>
@@ -86,19 +86,19 @@
 						</div><!-- End of div class card o-hidden border-0 shadow-lg my-5 -->
 					</div><!-- End of div class container -->
 
-					<div class="col-md-12 col-lg-12">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
 						<div class="card shadow mb-4">
 							<!-- Card Header - Dropdown -->
 							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-								<h6 class="m-0 font-weight-bold text-primary">Relacion de robos</h6>
+								<h6 class="m-0 font-weight-bold text-primary">Relacion de robos en Kg Anual</h6>
 								<div class="dropdown no-arrow">
 									<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
 										<div class="dropdown-header">Dropdown Header:</div>
-										<a class="dropdown-item btn btn-primary" href="#" id="print-chart-btn">Imprimir en pdf </a>
-										<button class="dropdown-item btn-primary" id="printBarChart">Print Chart</button>
+										<!-- <a class="dropdown-item btn btn-primary" href="#" id="print-chart-btn">Imprimir en pdf </a> -->
+										<button class="dropdown-item btn-primary" id="printBarChart">Imprimir en pdf</button>
 										<a class="dropdown-item" href="#">Another action</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="#">Something else here</a>
@@ -113,6 +113,93 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+						<div class="card shadow mb-4">
+							<!-- Card Header - Dropdown -->
+							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+								<h6 class="m-0 font-weight-bold text-primary">Relacion de robos en Kg por granja</h6>
+								<div class="dropdown no-arrow">
+									<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+										<div class="dropdown-header">Dropdown Header:</div>
+										<!-- <a class="dropdown-item btn btn-primary" href="#" id="print-chart-btn">Imprimir en pdf </a> -->
+										<button class="dropdown-item btn-primary" id="printBarChartG">Imprimir en pdf</button>
+										<a class="dropdown-item" href="#">Another action</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="#">Something else here</a>
+									</div>
+								</div>
+							</div>
+							<!-- Card Body -->
+							<div class="card-body">
+								<div class="chart-bar">
+									<canvas id="barChartGranjas"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div><!-- Begin Page Content /.container-fluid -->
 			</div><!-- End of Main Content -->
-			<?php require_once('core/footer.php'); ?>
+<script type="text/javascript">
+//variables con datos para los graficos
+var datos = {
+	labels: ["Total","Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+	datasets: [{
+		datalabels: {
+			anchor: 'end',
+			align: 'top'
+		},
+		label: "Año 2019",
+		backgroundColor: "#4e73df",
+		hoverBackgroundColor: "#2e59d9",
+		borderColor: "#4e73df",
+		data: [<?php echo $total1['total_kilos'].",";
+			foreach ($totalYear1 as $key => $value) {
+				if (!empty($value['total_kilos'])&&$key!=12) {
+				  echo $value['total_kilos'].',';
+				}elseif(!empty($value['total_kilos'])){
+				  echo $value['total_kilos'];
+				}elseif($key!=12){
+				  echo '0,';
+				}else{
+				  echo '0';
+				}
+			  }?>],
+	},{
+	  label: "Año 2020",
+	  data: [<?php echo $total2['total_kilos'].",";
+			foreach ($totalYear2 as $key => $value) {
+				if (!empty($value['total_kilos'])&&$key!=12) {
+				  echo $value['total_kilos'].',';
+				}elseif(!empty($value['total_kilos'])){
+				  echo $value['total_kilos'];
+				}elseif($key!=12){
+				  echo '0,';
+				}else{
+				  echo '0';
+				}
+			  }?>],
+	}],
+  };
+
+var datosGranjas = {
+	labels: ["Total","CE", "LP", "LC1", "LC2", "MC","ODA", "U1", "U2", "VDJ"],
+	datasets: [{
+		label: "Año 2019",
+		backgroundColor: "#4e73df",
+		hoverBackgroundColor: "#2e59d9",
+		borderColor: "#4e73df",
+		data: [<?php echo $total1['total_kilos'].',';foreach($valGranjas1 as $key => $value){echo $value;}?>],
+	},
+		{
+		label: "Año 2020",
+		data: [<?php echo $total2['total_kilos'].',';foreach($valGranjas2 as $key => $value){echo $value;}?>],
+		}],
+  };
+
+var totalesGranjas = <?php echo $total1['total_kilos']+$total2['total_kilos']; ?>;
+
+</script>			
+<?php require_once('core/footer.php'); ?>
