@@ -85,61 +85,89 @@
 							</div><!-- End of div class card-body p-0 -->
 						</div><!-- End of div class card o-hidden border-0 shadow-lg my-5 -->
 					</div><!-- End of div class container -->
-
-					<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
-						<div class="card shadow mb-4">
-							<!-- Card Header - Dropdown -->
-							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-								<h6 class="m-0 font-weight-bold text-primary">Relacion de robos en Kg Anual</h6>
-								<div class="dropdown no-arrow">
-									<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-										<div class="dropdown-header">Dropdown Header:</div>
-										<!-- <a class="dropdown-item btn btn-primary" href="#" id="print-chart-btn">Imprimir en pdf </a> -->
-										<button class="dropdown-item btn-primary" id="printBarChart">Imprimir en pdf</button>
-										<a class="dropdown-item" href="#">Another action</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">Something else here</a>
+					<!-- <div class="row"> -->
+						<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Relacion de robos en Kg Anual</h6>
+									<div class="dropdown no-arrow">
+										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+										</a>
+										<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+											<div class="dropdown-header">Dropdown Header:</div>
+											<!-- <a class="dropdown-item btn btn-primary" href="#" id="print-chart-btn">Imprimir en pdf </a> -->
+											<button class="dropdown-item btn-primary" id="printBarChart">Imprimir en pdf</button>
+											<a class="dropdown-item" href="#">Another action</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#">Something else here</a>
+										</div>
+									</div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="chart-bar">
+										<canvas id="myBarChart"></canvas>
 									</div>
 								</div>
 							</div>
-							<!-- Card Body -->
-							<div class="card-body">
-								<div class="chart-bar">
-									<canvas id="myBarChart"></canvas>
-								</div>
-							</div>
 						</div>
-					</div>
-					<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
-						<div class="card shadow mb-4">
-							<!-- Card Header - Dropdown -->
-							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-								<h6 class="m-0 font-weight-bold text-primary">Relacion de robos en Kg por granja</h6>
-								<div class="dropdown no-arrow">
-									<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-										<div class="dropdown-header">Dropdown Header:</div>
-										<!-- <a class="dropdown-item btn btn-primary" href="#" id="print-chart-btn">Imprimir en pdf </a> -->
-										<button class="dropdown-item btn-primary" id="printBarChartG">Imprimir en pdf</button>
-										<a class="dropdown-item" href="#">Another action</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">Something else here</a>
+						<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Relacion de robos en Kg por granja</h6>
+									<div class="dropdown no-arrow">
+										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+										</a>
+										<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+											<div class="dropdown-header">Dropdown Header:</div>
+											<!-- <a class="dropdown-item btn btn-primary" href="#" id="print-chart-btn">Imprimir en pdf </a> -->
+											<button class="dropdown-item btn-primary" id="printBarChartG">Imprimir en pdf</button>
+											<a class="dropdown-item" href="#">Another action</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#">Something else here</a>
+										</div>
+									</div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="chart-bar">
+										<canvas id="barChartGranjas"></canvas>
 									</div>
 								</div>
 							</div>
-							<!-- Card Body -->
-							<div class="card-body">
-								<div class="chart-bar">
-									<canvas id="barChartGranjas"></canvas>
+						</div>
+						<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Relacion de robos en Kg por seccion</h6>
+									<div class="dropdown no-arrow">
+										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+										</a>
+										<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+											<div class="dropdown-header">Dropdown Header:</div>
+											<!-- <a class="dropdown-item btn btn-primary" href="#" id="print-chart-btn">Imprimir en pdf </a> -->
+											<button class="dropdown-item btn-primary" id="printBarChartSec">Imprimir en pdf</button>
+											<a class="dropdown-item" href="#">Another action</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#">Something else here</a>
+										</div>
+									</div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="chart-bar">
+										<canvas id="barChartSeccion"></canvas>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					<!-- </div> -->
 				</div><!-- Begin Page Content /.container-fluid -->
 			</div><!-- End of Main Content -->
 <script type="text/javascript">
@@ -169,6 +197,9 @@ var datos = {
 			  }?>],
 	},{
 	  label: "Año 2020",
+	  backgroundColor: "#71140b",
+	  hoverBackgroundColor: "#480b05",
+	  borderColor: "#71140b",
 	  data: [<?php echo $total2['total_kilos'].",";
 			foreach ($totalYear2 as $key => $value) {
 				if (!empty($value['total_kilos'])&&$key!=12) {
@@ -195,7 +226,28 @@ var datosGranjas = {
 	},
 		{
 		label: "Año 2020",
+		backgroundColor: "#71140b",
+	  	hoverBackgroundColor: "#480b05",
+	  	borderColor: "#71140b",
 		data: [<?php echo $total2['total_kilos'].',';foreach($valGranjas2 as $key => $value){echo $value;}?>],
+		}],
+  };
+
+ var datosSeccion = {
+	labels: ["Total", "Batería", "Engorde", "Maternidad",  "Recría"],
+	datasets: [{
+		label: "Año 2019",
+		backgroundColor: "#4e73df",
+		hoverBackgroundColor: "#2e59d9",
+		borderColor: "#4e73df",
+		data: [<?php echo $total1['total_kilos'].',';foreach($valSeccion1 as $key => $value){echo $value;}?>],
+	},
+		{
+		label: "Año 2020",
+		backgroundColor: "#71140b",
+	  	hoverBackgroundColor: "#480b05",
+	  	borderColor: "#71140b",
+		data: [<?php echo $total2['total_kilos'].',';foreach($valSeccion2 as $key => $value){echo $value;}?>],
 		}],
   };
 

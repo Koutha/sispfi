@@ -12,7 +12,7 @@
 				<div class="container-fluid">
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Registro de novedades</h1>
+						<h1 class="h3 mb-0 text-gray-800">Actualizar Registro de novedad</h1>
 					</div>
 					<!-- Content Row -->
 					<div class="row">
@@ -29,33 +29,33 @@
 													<div class="text-center">
 														<h1 class="h4 text-gray-900 mt-2">Datos de la Novedad</h1>
 														<hr>
-														<?php if (isset($_SESSION['regNovedades'])&&$_SESSION['regNovedades']==1) {?>
+														<?php if (isset($_SESSION['editNovedades'])&&$_SESSION['editNovedades']==1) {?>
 															<div class="alert alert-success alert-dismissible">
 																<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-																<strong>Registro Completado!</strong> La novedad se ha registrado exitosamente.
+																<strong>Registro Actualizado!</strong> La novedad se ha actualizado exitosamente.
 															</div>
-															<?php unset($_SESSION['regNovedades']);} ?>    
+															<?php unset($_SESSION['editNovedades']);} ?> 
 														</div>
 														<div class="p-4">
 															<div class="form-group">
-																<label for="lugar">Lugar</label>
+																<label for="lugar"><strong>Lugar</strong></label>
 																<select name="lugar" class="form-control selectpicker show-tick" required="required" id="lugar" data-live-search="true" title="Seleccione un lugar">
-																	<option value="CEAPOCA">CEAPOCA</option>
-																	<option value="LA PARREÑA">LA PARREÑA</option>
-																	<option value="LOS CERRITOS 1">LOS CERRITOS 1</option>
-																	<option value="LOS CERRITOS 2">LOS CERRITOS 2</option>
-																	<option value="MATACARMELERA">MATACARMELERA</option>
-																	<option value="OJO DE AGUA">OJO DE AGUA</option>
-																	<option value="URIMAN 1">URIMAN 1</option>
-																	<option value="URIMAN 2">URIMAN 2</option>
-																	<option value="VILLA DE JULIA">VILLA DE JULIA</option>
+																	<option value="CEAPOCA" <?php echo (isset($novedad[0]['lugar'])&&$novedad[0]['lugar']=="CEAPOCA")?'selected':'';?>>CEAPOCA</option>
+																	<option value="LA PARREÑA" <?php echo (isset($novedad[0]['lugar'])&&$novedad[0]['lugar']=="LA PARREÑA")?'selected':'';?>>LA PARREÑA</option>
+																	<option value="LOS CERRITOS 1" <?php echo (isset($novedad[0]['lugar'])&&$novedad[0]['lugar']=="LOS CERRITOS 1")?'selected':'';?>>LOS CERRITOS 1</option>
+																	<option value="LOS CERRITOS 2" <?php echo (isset($novedad[0]['lugar'])&&$novedad[0]['lugar']=="LOS CERRITOS 2")?'selected':'';?>>LOS CERRITOS 2</option>
+																	<option value="MATACARMELERA" <?php echo (isset($novedad[0]['lugar'])&&$novedad[0]['lugar']=="MATACARMELERA")?'selected':'';?>>MATACARMELERA</option>
+																	<option value="OJO DE AGUA" <?php echo (isset($novedad[0]['lugar'])&&$novedad[0]['lugar']=="OJO DE AGUA")?'selected':'';?>>OJO DE AGUA</option>
+																	<option value="URIMAN 1" <?php echo (isset($novedad[0]['lugar'])&&$novedad[0]['lugar']=="URIMAN 1")?'selected':'';?>>URIMAN 1</option>
+																	<option value="URIMAN 2" <?php echo (isset($novedad[0]['lugar'])&&$novedad[0]['lugar']=="URIMAN 2")?'selected':'';?>>URIMAN 2</option>
+																	<option value="VILLA DE JULIA" <?php echo (isset($novedad[0]['lugar'])&&$novedad[0]['lugar']=="VILLA DE JULIA")?'selected':'';?>>VILLA DE JULIA</option>
 																</select>
 															</div>
 															<div class="form-group row">
 																<div class="col-sm-6">
-																	<label for="fecha_hecho">Fecha y hora de la novedad</label>
+																	<label for="fecha_hecho"><strong>Fecha y hora de la novedad</strong></label>
 																	<div class="input-group date" id="fecha_hecho" data-target-input="nearest">
-																		<input type="text" name="fecha_hecho" id="fecha_hecho" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_hecho" autocomplete="off" value="<?php echo isset($_POST['fecha_hecho']) ? $_POST['fecha_hecho']:""; ?>" required>
+																		<input type="text" name="fecha_hecho" id="fecha_hecho" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_hecho" autocomplete="off" value="<?php echo isset($novedad[0]['fecha_hecho'])?date_format(date_create($novedad[0]['fecha_hecho']), 'd/m/Y h:i A'):'';?>" required>
 																		<div class="input-group-append" >
 																			<div class="input-group-text">
 																				<i class="fa fa-calendar"></i>
@@ -64,9 +64,9 @@
 																	</div>
 																</div>
 																<div class="col-sm-6">
-																	<label for="fecha_reporte">Fecha y hora del reporte</label>
+																	<label for="fecha_reporte"><strong>Fecha y hora del reporte</strong></label>
 																	<div class="input-group date" id="fecha_reporte" data-target-input="nearest">
-																		<input type="text" name="fecha_reporte" id="fecha_reporte" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_reporte" autocomplete="off" value="<?php echo isset($_POST['fecha_reporte']) ? $_POST['fecha_reporte']:""; ?>" required>
+																		<input type="text" name="fecha_reporte" id="fecha_reporte" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_reporte" autocomplete="off" value="<?php echo isset($novedad[0]['fecha_reporte'])?date_format(date_create($novedad[0]['fecha_reporte']), 'd/m/Y h:i A'):'';?>" required>
 																		<div class="input-group-append" >
 																			<div class="input-group-text">
 																				<i class="fa fa-calendar"></i>
@@ -76,8 +76,8 @@
 																</div>
 															</div>
 															<div class="form-group">
-																<label for="descripcion">Descripción</label>
-																<textarea name="descripcion" id="descripcion" class="form-control" rows="3" placeholder="Breve resumen del hecho ocurrido" autocomplete="off" onKeyUp="mayusculas(this);" required></textarea>
+																<label for="descripcion"><strong>Descripción</strong></label>
+																<textarea name="descripcion" id="descripcion" class="form-control" rows="8" placeholder="Breve resumen del hecho ocurrido" autocomplete="off" onKeyUp="mayusculas(this);" required><?php echo isset($novedad[0]['descripcion'])?$novedad[0]['descripcion']:''; ?></textarea>
 															</div>
 														</div>
 													</div>
@@ -91,23 +91,50 @@
 														</div>
 														<div class="p-4">
 															<div class="form-group">
-																<label for="seccion">Sección</label>
-																<!-- <select name="seccion" class="form-control  p-1" required="required">
-																	<option value="">Seleccione...</option>
-																	<option value="BATERIA">Batería</option>
-																	<option value="ENGORDE">Engorde</option>
-																	<option value="MATERNIDAD">Maternidad</option>
-																	<option value="RECRIA">Recría</option>
-																</select> -->
+																<label for="seccion"><strong>Sección</strong></label>
 																<div class="container">
 																	<div class="row">
 																		<div class="dual-list list-left col-md-5">
 																			<div class="well">
 																				<ul class="list-group">
-																					<li class="list-group-item bat">Batería</li>
-																					<li class="list-group-item eng">Engorde</li>
-																					<li class="list-group-item mat">Maternidad</li>
-																					<li class="list-group-item rec">Recría</li>
+																					<?php
+																					$bat = 0;$eng = 0; $mat =0; $rec = 0; 
+																					foreach ($novedad as $key => $value){
+																						if($value['seccion']=='Batería'){
+																							$bat = 1;
+																							$batc = $value['cantidad'];
+																							$batk = $value['kilos'];
+																							$batu = $value['ubicacion'];
+																						}elseif($value['seccion']=='Engorde'){
+																							$eng = 1;
+																							$engc = $value['cantidad'];
+																							$engk = $value['kilos'];
+																							$engu = $value['ubicacion'];
+																						}elseif($value['seccion']=='Maternidad'){
+																							$mat = 1;
+																							$matc = $value['cantidad'];
+																							$matk = $value['kilos'];
+																							$matu = $value['ubicacion'];
+																						}elseif($value['seccion']=='Recría'){
+																							$rec = 1;
+																							$recc = $value['cantidad'];
+																							$reck = $value['kilos'];
+																							$recu = $value['ubicacion'];
+																						}
+																					}
+																					if($bat==0){
+																						echo '<li class="list-group-item bat">Batería</li>';
+																					}
+																					if($eng==0){
+																						echo '<li class="list-group-item eng">Engorde</li>';
+																					}
+																					if($mat==0){
+																						echo '<li class="list-group-item mat">Maternidad</li>';
+																					}
+																					if($rec==0){
+																						echo '<li class="list-group-item rec">Recría</li>';
+																					}
+																					?>
 																				</ul>
 																			</div>
 																		</div>
@@ -122,6 +149,17 @@
 																		<div class="dual-list list-right col-md-5">
 																			<div class="well">
 																				<ul class="list-group">
+																					<?php foreach ($novedad as $key => $value) {
+																						if($value['seccion']=='Batería'){
+																							echo '<li class="list-group-item bat active">Batería</li>';
+																						}elseif ($value['seccion']=='Engorde') {
+																							echo '<li class="list-group-item eng active">Engorde</li>';
+																						}elseif ($value['seccion']=='Maternidad') {
+																							echo '<li class="list-group-item mat active">Maternidad</li>';
+																						}elseif ($value['seccion']=='Recría') {
+																							echo '<li class="list-group-item rec active">Recría</li>';
+																						}
+																					} ?>
 																				</ul>
 																			</div>
 																		</div>
@@ -145,25 +183,24 @@
 																				<strong>Los datos invalidos!</strong> Verifique que los datos sean correctos.
 																			</div>
 																			<div class="p-1">
-																				<input type="hidden" name="bateria" value="Batería" disabled>
+																				<input type="hidden" name="bateria" value="Batería" <?php if($bat==0){echo 'Disabled';} ?>>
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_B">Cantidad de cerdos</label>
-																						<input type="number" name="cantidad_B" class="form-control" id="cantidad_B" disabled>
+																						<input type="number" name="cantidad_B" class="form-control" id="cantidad_B" value="<?php echo isset($batc)?$batc:''; ?>" <?php if($bat==0){echo 'Disabled';} ?>>
 																					</div>
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="kilos_B">Total de kilos</label>
-																						<input type="number" name="kilos_B" class="form-control" id="kilos_B" disabled>
+																						<input type="number" name="kilos_B" class="form-control" id="kilos_B" value="<?php echo isset($batk)?$batk:''; ?>" <?php if($bat==0){echo 'Disabled';} ?>>
 																					</div>
 																				</div>
 																				<div class="form-group">
 																					<label for="ubicacion_B">Ubicación</label>
-																					<textarea name="ubicacion_B" id="ubicacion_B" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" disabled></textarea>
+																					<textarea name="ubicacion_B" id="ubicacion_B" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" <?php if($bat==0){echo 'Disabled';} ?>><?php echo isset($batu)?$batu:''; ?></textarea>
 																				</div> 
 																			</div>
 																		</div>
 																		<div class="modal-footer">
-																			<!-- <a class="btn btn-primary" href="#">Agregar</a> -->
 																			<button type="button" class="btn btn-primary" data-dismiss="modal" id="Add">Agregar</button>
 																			<button type="button" class="btn btn-secondary" data-dismiss="modal" >Volver</button>
 																			<button type="button" class="btn btn-danger" data-dismiss="modal" id="dismissB">Quitar</button>
@@ -189,20 +226,20 @@
 																				<strong>Los datos invalidos!</strong> Verifique que los datos sean correctos.
 																			</div>
 																			<div class="p-1">
-																				<input type="hidden" name="engorde" value="Engorde" disabled>
+																				<input type="hidden" name="engorde" value="Engorde" <?php if($eng==0){echo 'Disabled';} ?>>
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_E">Cantidad de cerdos</label>
-																						<input type="number" name="cantidad_E" class="form-control" id="cantidad_E" disabled>
+																						<input type="number" name="cantidad_E" class="form-control" id="cantidad_E" value="<?php echo isset($engc)?$engc:''; ?>" <?php if($eng==0){echo 'Disabled';} ?>>
 																					</div>
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="kilos_E">Total de kilos</label>
-																						<input type="number_E" name="kilos_E" class="form-control" id="kilos_E" disabled>
+																						<input type="number_E" name="kilos_E" class="form-control" id="kilos_E" value="<?php echo isset($engk)?$engk:''; ?>" <?php if($eng==0){echo 'Disabled';} ?>>
 																					</div>
 																				</div>
 																				<div class="form-group">
 																					<label for="ubicacion_E">Ubicación</label>
-																					<textarea name="ubicacion_E" id="ubicacion_E" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" disabled></textarea>
+																					<textarea name="ubicacion_E" id="ubicacion_E" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" <?php if($eng==0){echo 'Disabled';} ?>><?php echo isset($engu)?$engu:''; ?></textarea>
 																				</div> 
 																			</div>
 																		</div>
@@ -233,20 +270,20 @@
 																				<strong>Los datos invalidos!</strong> Verifique que los datos sean correctos.
 																			</div>
 																			<div class="p-1">
-																				<input type="hidden" name="maternidad" value="Maternidad" disabled>
+																				<input type="hidden" name="maternidad" value="Maternidad" <?php if($mat==0){echo 'Disabled';} ?>>
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_M">Cantidad de cerdos</label>
-																						<input type="number" name="cantidad_M" class="form-control" id="cantidad_M" disabled>
+																						<input type="number" name="cantidad_M" class="form-control" id="cantidad_M" value="<?php echo isset($matc)?$matc:''; ?>" <?php if($mat==0){echo 'Disabled';} ?>>
 																					</div>
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="kilos_M">Total de kilos</label>
-																						<input type="number" name="kilos_M" class="form-control" id="kilos_M" disabled>
+																						<input type="number" name="kilos_M" class="form-control" id="kilos_M" value="<?php echo isset($matk)?$matk:''; ?>" <?php if($mat==0){echo 'Disabled';} ?>>
 																					</div>
 																				</div>
 																				<div class="form-group">
 																					<label for="ubicacion_M">Ubicación</label>
-																					<textarea name="ubicacion_M" id="ubicacion_M" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" disabled></textarea>
+																					<textarea name="ubicacion_M" id="ubicacion_M" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" <?php if($mat==0){echo 'Disabled';} ?>><?php echo isset($matu)?$matu:'';?></textarea>
 																				</div> 
 																			</div>
 																		</div>
@@ -277,20 +314,20 @@
 																				<strong>Los datos invalidos!</strong> Verifique que los datos sean correctos.
 																			</div>
 																			<div class="p-1">
-																				<input type="hidden" name="recria" value="Recría" disabled>
+																				<input type="hidden" name="recria" value="Recría" <?php if($rec==0){echo 'Disabled';} ?>>
 																				<div class="form-group row">
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="cantidad_R">Cantidad de cerdos</label>
-																						<input type="number" name="cantidad_R" class="form-control" id="cantidad_R" disabled>
+																						<input type="number" name="cantidad_R" class="form-control" id="cantidad_R" value="<?php echo isset($recc)?$recc:''; ?>" <?php if($rec==0){echo 'Disabled';} ?>>
 																					</div>
 																					<div class="col-sm-6 mb-3 mb-sm-0">
 																						<label for="kilos_R">Total de kilos</label>
-																						<input type="number" name="kilos_R" class="form-control" id="kilos_R" disabled>
+																						<input type="number" name="kilos_R" class="form-control" id="kilos_R" value="<?php echo isset($reck)?$reck:''; ?>" <?php if($rec==0){echo 'Disabled';} ?>>
 																					</div>
 																				</div>
 																				<div class="form-group">
 																					<label for="ubicacion_R">Ubicación</label>
-																					<textarea name="ubicacion_R" id="ubicacion_R" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" disabled></textarea>
+																					<textarea name="ubicacion_R" id="ubicacion_R" class="form-control" rows="3" placeholder="Galpon, Corral, Fila Etc..." autocomplete="off" onKeyUp="mayusculas(this);" <?php if($rec==0){echo 'Disabled';} ?>><?php echo isset($recu)?$recu:''; ?></textarea>
 																				</div> 
 																			</div>
 																		</div>
@@ -304,15 +341,14 @@
 																</div>
 															</div>
 														</div><!-- End of p-5 class div -->
-														
 													</div><!-- End of  div class col-lg-6 -->
-													
 												</div><!-- End of div class row -->
 												<hr>
+												<input type="hidden" name="id" value = "<?php echo $id; ?>">
 												<div class="form-group" style="margin-left: 40%;">
 													<div class="text-center">
 														<div class="col-sm-5">
-															<button type="submit" name="submit" value="regNovedades" id="btnregNovedades" class="btn btn-primary btn-user btn-block">Registrar</button>
+															<button type="submit" name="submit" value="editNovedades" id="btnregNovedades" class="btn btn-primary btn-user btn-block">Actualizar</button>
 														</div>
 													</div>
 												</div>

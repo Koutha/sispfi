@@ -133,10 +133,8 @@ $(function () {
 	});
 });
 </script>
-
 <!-- //script para seleccionar seccion del robo -->
 <script src="assets/js/dualBoxList-bySmital.js"></script>
-
 <script type="text/javascript"> //imprimir charts
 $('#printBarChart').on('click', function() {
 	var canvas = document.querySelector("#myBarChart");
@@ -157,8 +155,6 @@ $('#printBarChartG').on('click', function() {
     window.open(blob);
 });
 </script>
-
-
 
 </body>
 </html>

@@ -297,7 +297,7 @@
 												<div class="form-group" style="margin-left: 40%;">
 													<div class="text-center">
 														<div class="col-sm-5">
-															<button type="submit" name="submit" value="regRadioFE" id="btnRegRadioFE" class="btn btn-primary btn-user btn-block">Registrar</button>
+															<button type="submit" name="submit" value="regRadioFE" id="btnRegRadioFE" class="btn btn-primary btn-user btn-block" disabled>Registrar</button>
 														</div>
 													</div>
 												</div>

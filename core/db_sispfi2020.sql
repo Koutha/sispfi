@@ -481,6 +481,8 @@ ALTER TABLE ONLY public.usuario ALTER COLUMN id_usuario SET DEFAULT nextval('pub
 -- Data for Name: novedades; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.novedades VALUES (6, 2, 'CEAPOCA', '2020-02-01 04:25:00', '2020-02-01 04:25:00', 'PRUEBA CEA');
+INSERT INTO public.novedades VALUES (7, 2, 'LA PARREÑA', '2020-02-02 04:27:00', '2020-02-02 04:27:00', 'PRUEBA PARREÑA');
 
 
 --
@@ -569,6 +571,13 @@ INSERT INTO public.radio VALUES (39, '58', 'ASIGNADO', 'HACIENDA LA ESMERALDA', 
 -- Data for Name: robo_cerdo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.robo_cerdo VALUES (11, 6, 'Batería', 5, 10, 'ASD');
+INSERT INTO public.robo_cerdo VALUES (12, 6, 'Engorde', 5, 50, 'ASD');
+INSERT INTO public.robo_cerdo VALUES (13, 6, 'Maternidad', 11, 110, 'ASD MATERNIDAD');
+INSERT INTO public.robo_cerdo VALUES (14, 6, 'Recría', 5, 20, 'ASD');
+INSERT INTO public.robo_cerdo VALUES (15, 7, 'Batería', 5, 25, 'PRUEBA');
+INSERT INTO public.robo_cerdo VALUES (16, 7, 'Maternidad', 2, 25, 'PRUEBA');
+INSERT INTO public.robo_cerdo VALUES (17, 7, 'Recría', 3, 30, 'PRUEBA RECRIA');
 
 
 --
@@ -576,16 +585,15 @@ INSERT INTO public.radio VALUES (39, '58', 'ASIGNADO', 'HACIENDA LA ESMERALDA', 
 --
 
 INSERT INTO public.usuario VALUES (1, 'ippfi711', '1234', 'Alvaro', 'Tirado', '20350027', 'atirado@inporca.com');
-INSERT INTO public.usuario VALUES (6, 'ippfi710', '$2y$10$hfy9Wb8hupv4vd1uC4h.nOmxDhEjkZdfAOixQwhpPUhoGyZ7/KhMm', 'Alvaro', 'Tirado', '20350028', 'alvaro027@gmail.com');
-INSERT INTO public.usuario VALUES (7, 'guedezale', '$2y$10$T0Dt86GhEUwEv6REkuAG9e.m5GYopqycHqQGWhRkdZiL8HMUf4KxS', 'Alejandro', 'Guedez', '25544458', 'guye@gmail.com');
-INSERT INTO public.usuario VALUES (9, 'evenegas', '$2y$10$UF22K8PdDo5fR11dR6GtmOCP0HSqNJQK925MW5A9t7zQ5TjYBOIKa', 'Eduardo', 'Venegas', '11111111', 'ee@inporca');
+INSERT INTO public.usuario VALUES (2, 'ippfi710', '$2y$10$hfy9Wb8hupv4vd1uC4h.nOmxDhEjkZdfAOixQwhpPUhoGyZ7/KhMm', 'Alvaro', 'Tirado', '20350028', 'alvaro027@gmail.com');
+INSERT INTO public.usuario VALUES (3, 'guedezale', '$2y$10$T0Dt86GhEUwEv6REkuAG9e.m5GYopqycHqQGWhRkdZiL8HMUf4KxS', 'Alejandro', 'Guedez', '25544458', 'guye@gmail.com');
+INSERT INTO public.usuario VALUES (4, 'evenegas', '$2y$10$UF22K8PdDo5fR11dR6GtmOCP0HSqNJQK925MW5A9t7zQ5TjYBOIKa', 'Eduardo', 'Venegas', '11111111', 'ee@inporca');
 
 
 --
 -- Data for Name: usuario_permiso; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.usuario_permiso VALUES (1, 1);
 
 
 --
@@ -599,7 +607,7 @@ SELECT pg_catalog.setval('public.bitacora_id_bitacora_seq', 1, false);
 -- Name: novedades_id_novedades_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.novedades_id_novedades_seq', 1, false);
+SELECT pg_catalog.setval('public.novedades_id_novedades_seq', 7, true);
 
 
 --
@@ -627,14 +635,14 @@ SELECT pg_catalog.setval('public.reporte_radio_id_reporte_seq', 1, false);
 -- Name: robo_cerdo_id_robo_cerdo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.robo_cerdo_id_robo_cerdo_seq', 1, false);
+SELECT pg_catalog.setval('public.robo_cerdo_id_robo_cerdo_seq', 17, true);
 
 
 --
 -- Name: usuario_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuario_id_usuario_seq', 9, true);
+SELECT pg_catalog.setval('public.usuario_id_usuario_seq', 4, true);
 
 
 --

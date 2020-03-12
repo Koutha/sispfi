@@ -15,7 +15,7 @@
 										<h1 class="h4 text-gray-900 mb-4">Bienvenido al SISPFI</h1>
 									</div>
 									<?php if (isset($_SESSION['loginFailed']) && $_SESSION['loginFailed'] == 1) { ?>
-                            <div class="alert alert-success alert-dismissible">
+                            <div class="alert alert-danger alert-dismissible">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <strong>Autenticación Fallida!</strong>  usuario o contraseña incorrectos.
                             </div>
@@ -34,21 +34,19 @@
 											</div>
 										</div> -->
 										<button type="submit" name="submit" value="login" class="btn btn-primary btn-user btn-block">Ingresar</button>
-										<!-- <a href="index.html" class="btn btn-primary btn-user btn-block">
-											Login
-										</a> -->
+										
 										<!-- <hr>
 										<a href="index.html" class="btn btn-google btn-user btn-block">
 											<i class="fab fa-google fa-fw"></i> Login with Google
 										</a>
 										<a href="index.html" class="btn btn-facebook btn-user btn-block">
 											<i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-										</a>
-									</form> -->
+										</a>-->
+									</form> 
 									<hr>
-									<div class="text-center">
+									<!-- <div class="text-center">
 										<a class="small" href="#">Olvido su Contraseña?</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>

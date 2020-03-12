@@ -88,12 +88,12 @@
 					</div>
 				</li>
 				<!-- Nav Item - Novedades Collapse Menu -->
-				<li class="nav-item <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"){echo "active";} ?>">
-					<a class="nav-link <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"){echo "";}else{echo "collapsed";} ?>" href="#" data-toggle="collapse" data-target="#collapseNovedades" aria-expanded="true" aria-controls="collapseNovedades">
+				<li class="nav-item <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesList"||$_GET['do']=="novedadesDetails"){echo "active";} ?>">
+					<a class="nav-link <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesList"||$_GET['do']=="novedadesDetails"){echo "";}else{echo "collapsed";} ?>" href="#" data-toggle="collapse" data-target="#collapseNovedades" aria-expanded="true" aria-controls="collapseNovedades">
 						<i class="fas fa-layer-group"></i>
 						<span>Novedades</span>
 					</a>
-					<div id="collapseNovedades" class="collapse <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"){echo "show";} ?>" aria-labelledby="headingNovedades" data-parent="#accordionSidebar">
+					<div id="collapseNovedades" class="collapse <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesList"||$_GET['do']=="novedadesDetails"){echo "show";} ?>" aria-labelledby="headingNovedades" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
 							<h6 class="collapse-header">Gestion de Novedades</h6>
 							<ul class="navbar-nav accordion" id="accordionSidebarNV">
@@ -112,8 +112,8 @@
 								</li>
 							</ul>
 							<!-- <a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='regNovedades'){echo "active";} ?>" href="?do=regNovedades"><i class="fas fa-edit" style="color: rgba(0,0,0,.9);"></i> Registrar</a> -->
-							<a class="collapse-item" href="?do=novedadesDetails"><i class="fas fa-book"></i> Consultas</a>
-							<a class="collapse-item" href="?do=novedadesReport"><i class="far fa-chart-bar"></i> Estadísticas</a>
+							<a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='novedadesList'||$_GET['do']=="novedadesDetails"){echo "active";} ?>" href="?do=novedadesList"><i class="fas fa-book"></i> Consultas</a>
+							<a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='novedadesReport'){echo "active";} ?>" href="?do=novedadesReport"><i class="far fa-chart-bar"></i> Estadísticas</a>
 						</div>
 					</div>
 				</li>
@@ -121,12 +121,13 @@
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRegistros" aria-expanded="true" aria-controls="collapseRegistros">
 						<i class="fas fa-fw fa-wrench"></i>
-						<span>Reportes Nocturnos</span>
+						<span>Reportes por Radio</span>
 					</a>
 					<div id="collapseRegistros" class="collapse" aria-labelledby="headingRegistros" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
 							<h6 class="collapse-header">Gestion de reportes</h6>
-							<a class="collapse-item" href="#">Novedades</a>
+							<a class="collapse-item" href="#">Guardia Diurna</a>
+							<a class="collapse-item" href="#">Guardia nocturna</a>
 						</div>
 					</div>
 				</li>
@@ -139,7 +140,9 @@
 					<div id="collapseEscoltas" class="collapse" aria-labelledby="headingEscoltas" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
 							<h6 class="collapse-header">Gestion de Escoltas</h6>
-							<a class="collapse-item" href="#">Novedades</a>
+							<a class="collapse-item" href="#">Ruta del Semen</a>
+							<a class="collapse-item" href="#">Alimentos</a>
+							<a class="collapse-item" href="#">Animales</a>
 						</div>
 					</div>
 				</li>

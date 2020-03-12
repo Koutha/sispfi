@@ -31,7 +31,7 @@ $sql2 = "SELECT * FROM robo_cerdo rc
 					BETWEEN '2020-01-01' AND timestamp '2020-01-01' + interval '1 year') nv 
 			ON rc.id_novedades = nv.id_novedades";
 
-//
+////total de animales robados y total de kilos
 $sql3 = "SELECT sum(cantidad) as total_cerdos, sum(kilos) as total_kilos FROM robo_cerdo rc 
 			JOIN 
 			(SELECT * FROM novedades 
@@ -43,6 +43,11 @@ $sql3 = "SELECT sum(cantidad) as total_cerdos, sum(kilos) as total_kilos FROM ro
 $sql69 = "SELECT sum(rc.cantidad) as total_cerdos , sum(rc.kilos) as total_kilos, lugar  FROM robo_cerdo rc 
 JOIN (SELECT * FROM novedades WHERE fecha_hecho BETWEEN '2020-01-01' AND timestamp '2020-01-01' + interval '1 year') nv 
 ON rc.id_novedades = nv.id_novedades GROUP BY nv.lugar";
+
+//total de animales robados y total de kilos por año por seccion
+$sqlSeccion = "SELECT sum(rc.cantidad) as total_cerdos , sum(rc.kilos) as total_kilos, rc.seccion  FROM robo_cerdo rc 
+JOIN (SELECT * FROM novedades WHERE fecha_hecho BETWEEN '2020-01-01' AND timestamp '2020-01-01' + interval '1 year') nv 
+ON rc.id_novedades = nv.id_novedades GROUP BY rc.seccion";
 
 //total de animales y kilos por mes 1-12 -- EXTRACT(MONTH FROM fecha_hecho) = 1 -- de un año dado 
 $sql4="SELECT sum(cantidad) as total_cerdos, sum(kilos) as total_kilos FROM robo_cerdo rc
@@ -193,6 +198,16 @@ foreach ($totalAñoGranjas as $key => $value) {
 	}
 }
 // var_dump($totalYear1);
+echo '<br><br>';
+print_r($novObject->getBy('28'));
+echo '<br><br>';
+$nov1 = $novObject->getBy('28');
+foreach ($nov1 as $key => $value) {
+	echo $value['seccion'].', ';
+	echo 'cantidad: '.$value['cantidad'].', ';
+	echo 'kilos: '.$value['kilos'];
+	echo '<br>';
+}
  ?>
 
 

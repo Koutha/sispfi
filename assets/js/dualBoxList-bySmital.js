@@ -35,7 +35,7 @@ $(function () {
 							var itemAdd = $('.list-left ul li.active');
 							itemAdd.clone().appendTo('.list-right ul');
 							itemAdd.remove();
-					}
+						}
 				});
 			}else if (itemLeft.hasClass('eng')){
 				$('#engordeModal').modal();
@@ -43,6 +43,7 @@ $(function () {
 				$('[name=cantidad_E]').prop("disabled",  false);
 				$('[name=kilos_E]').prop("disabled",  false);
 				$('[name=ubicacion_E]').prop("disabled",  false);
+				$('#dismissE').hide(); //ocultar boton quitar
 				$('#engordeModal .modal-footer .btn-primary').on('click', function(){
 					//validaciones en los campos
 					if (($('[name=cantidad_E]').val()=="")
@@ -55,6 +56,7 @@ $(function () {
 							return false;
 						}else{
 							$('[name=engorde]').prop("disabled",  false); //activar el input para que sea enviado por post
+							$('#dismissE').show(2000); //mostrar boton para quitar
 							var itemAdd = $('.list-left ul li.active');
 							itemAdd.clone().appendTo('.list-right ul');
 							itemAdd.remove();
@@ -66,6 +68,7 @@ $(function () {
 				$('[name=cantidad_M]').prop("disabled",  false);
 				$('[name=kilos_M]').prop("disabled",  false);
 				$('[name=ubicacion_M]').prop("disabled",  false);
+				$('#dismissM').hide(); //ocultar boton quitar
 				$('#maternidadModal .modal-footer .btn-primary').on('click', function(){
 					//meter validaciones a los campos aqui
 					if (($('[name=cantidad_M]').val()=="")
@@ -78,6 +81,7 @@ $(function () {
 							return false;
 						}else{
 							$('[name=maternidad]').prop("disabled",  false); //activar el input para que sea enviado por post
+							$('#dismissM').show(2000); //mostrar boton para quitar
 							var itemAdd = $('.list-left ul li.active');
 							itemAdd.clone().appendTo('.list-right ul');
 							itemAdd.remove();
@@ -89,6 +93,7 @@ $(function () {
 				$('[name=cantidad_R]').prop("disabled",  false);
 				$('[name=kilos_R]').prop("disabled",  false);
 				$('[name=ubicacion_R]').prop("disabled",  false);
+				$('#dismissR').hide(); //ocultar boton quitar
 				$('#recriaModal .modal-footer .btn-primary').on('click', function(){
 					//meter validaciones a los campos aqui
 					if (($('[name=cantidad_R]').val()=="")
@@ -101,6 +106,7 @@ $(function () {
 							return false;
 						}else{
 						$('[name=recria]').prop("disabled",  false); //activar el input para que sea enviado por post
+						$('#dismissR').show(2000); //mostrar boton para quitar
 						var itemAdd = $('.list-left ul li.active');
 						itemAdd.clone().appendTo('.list-right ul');
 						itemAdd.remove();
