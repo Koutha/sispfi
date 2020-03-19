@@ -99,11 +99,259 @@ var myBarChart = new Chart(ctx, {
   },
   }
 });
-// Bar Chart Total por granjas
+// Bar Chart Total animales por año
+var ctxAA = document.getElementById("BarChartAnimales");
+var myBarChart = new Chart(ctxAA, {
+  type: 'bar',
+  data: datosAA, //variable declarada arriba y asignada con los datos
+  options: {
+  plugins: {
+    datalabels :{
+      anchor: 'end',
+      align: 'top'
+    }
+  },
+  maintainAspectRatio: false,
+  layout: {
+    padding: {
+    left: 10,
+    right: 25,
+    top: 25,
+    bottom: 0
+    }
+  },
+  scales: {
+    xAxes: [{
+    time: {
+      unit: 'month'
+    },
+    gridLines: {
+      display: false,
+      drawBorder: false
+    },
+    ticks: {
+      maxTicksLimit: 13
+    },
+    maxBarThickness: 25,
+    }],
+    yAxes: [{
+    ticks: {
+      min: 0,
+      max: totalesGranjasAnimales, //variable declarada arriba y asignada con los datos
+      maxTicksLimit: 5,
+      padding: 10,
+      // Include a dollar sign in the ticks
+      callback: function(value, index, values) {
+      return  number_format(value)+' Unid.';
+      }
+    },
+    gridLines: {
+      color: "rgb(234, 236, 244)",
+      zeroLineColor: "rgb(234, 236, 244)",
+      drawBorder: false,
+      borderDash: [2],
+      zeroLineBorderDash: [2]
+    }
+    }],
+  },
+  legend: {
+    display: true,
+    position: 'right',
+    labels: {
+    padding: 30,
+    },
+  },
+  tooltips: {
+    enable: true
+  },
+  hover: {
+    animationDuration: 0
+  },
+  }
+});
+// Bar Chart Total en KG por granjas
 var ctxG = document.getElementById("barChartGranjas");
 var myBarChartGranjas = new Chart(ctxG, {
   type: 'bar',
   data: datosGranjas, //variable declarada arriba y asignada con los datos
+  options: {
+  plugins: {
+    datalabels :{
+      anchor: 'end',
+      align: 'top'
+    }
+  },
+  maintainAspectRatio: false,
+  layout: {
+    padding: {
+    left: 10,
+    right: 25,
+    top: 25,
+    bottom: 0
+    }
+  },
+  scales: {
+    xAxes: [{
+    time: {
+      unit: 'month'
+    },
+    gridLines: {
+      display: false,
+      drawBorder: false
+    },
+    ticks: {
+      maxTicksLimit: 10
+    },
+    maxBarThickness: 25,
+    }],
+    yAxes: [{
+    ticks: {
+      min: 0,
+      max: totalesGranjas,
+      maxTicksLimit: 5,
+      padding: 10,
+      // Include a dollar sign in the ticks
+      callback: function(value, index, values) {
+      return  number_format(value)+' Kg.';
+      }
+    },
+    gridLines: {
+      color: "rgb(234, 236, 244)",
+      zeroLineColor: "rgb(234, 236, 244)",
+      drawBorder: false,
+      borderDash: [2],
+      zeroLineBorderDash: [2]
+    }
+    }],
+  },
+  legend: {
+    display: true,
+    position: 'right',
+    labels: {
+    padding: 30,
+
+    },
+   
+  },
+  tooltips: {
+    enable: true,
+    titleMarginBottom: 10,
+    titleFontColor: '#6e707e',
+    titleFontSize: 14,
+    backgroundColor: "rgb(255,255,255)",
+    bodyFontColor: "#858796",
+    borderColor: '#dddfeb',
+    borderWidth: 1,
+    xPadding: 15,
+    yPadding: 15,
+    displayColors: false,
+    caretPadding: 10,
+    callbacks: {
+      label: function(tooltipItem, chart) {
+        var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+        return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+ ' Kg';
+      }
+    }
+  },
+  hover: {
+    animationDuration: 0
+  },
+  }
+});
+// Bar Chart Total año en cantidad de animales por granjas
+var ctxGA = document.getElementById("barChartGranjasAnimales");
+var myBarChartGranjas = new Chart(ctxGA, {
+  type: 'bar',
+  data: datosGranjasAA, //variable declarada arriba y asignada con los datos
+  options: {
+  plugins: {
+    datalabels :{
+      anchor: 'end',
+      align: 'top'
+    }
+  },
+  maintainAspectRatio: false,
+  layout: {
+    padding: {
+    left: 10,
+    right: 25,
+    top: 25,
+    bottom: 0
+    }
+  },
+  scales: {
+    xAxes: [{
+    time: {
+      unit: 'month'
+    },
+    gridLines: {
+      display: false,
+      drawBorder: false
+    },
+    ticks: {
+      maxTicksLimit: 10
+    },
+    maxBarThickness: 25,
+    }],
+    yAxes: [{
+    ticks: {
+      min: 0,
+      max: totalesGranjasAnimales,
+      maxTicksLimit: 5,
+      padding: 10,
+      // Include a dollar sign in the ticks
+      callback: function(value, index, values) {
+      return  number_format(value)+' Unid.';
+      }
+    },
+    gridLines: {
+      color: "rgb(234, 236, 244)",
+      zeroLineColor: "rgb(234, 236, 244)",
+      drawBorder: false,
+      borderDash: [2],
+      zeroLineBorderDash: [2]
+    }
+    }],
+  },
+  legend: {
+    display: true,
+    position: 'right',
+    labels: {
+    padding: 30,
+
+    },
+   
+  },
+  tooltips: {
+    enable: true,
+    titleMarginBottom: 10,
+    titleFontColor: '#6e707e',
+    titleFontSize: 14,
+    backgroundColor: "rgb(255,255,255)",
+    bodyFontColor: "#858796",
+    borderColor: '#dddfeb',
+    borderWidth: 1,
+    xPadding: 15,
+    yPadding: 15,
+    displayColors: false,
+    caretPadding: 10,
+    callbacks: {
+      label: function(tooltipItem, chart) {
+        var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+        return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+ ' Unid.';
+      }
+    }
+  },
+  hover: {
+    animationDuration: 0
+  },
+  }
+});
+// Bar Chart Total en KG por seccion
+var ctxS = document.getElementById("barChartSeccion");
+var myBarChartGranjas = new Chart(ctxS, {
+  type: 'bar',
+  data: datosSeccion, //variable declarada arriba y asignada con los datos
   options: {
   plugins: {
     datalabels :{
@@ -188,11 +436,11 @@ var myBarChartGranjas = new Chart(ctxG, {
   },
   }
 });
-// Bar Chart Total por seccion
-var ctxS = document.getElementById("barChartSeccion");
-var myBarChartGranjas = new Chart(ctxS, {
+// Bar Chart Total en Cantidad de animales por seccion
+var ctxSA = document.getElementById("barChartSeccionAnimales");
+var myBarChartGranjas = new Chart(ctxSA, {
   type: 'bar',
-  data: datosSeccion, //variable declarada arriba y asignada con los datos
+  data: datosSeccionAnimales, //variable declarada arriba y asignada con los datos
   options: {
   plugins: {
     datalabels :{
@@ -226,12 +474,12 @@ var myBarChartGranjas = new Chart(ctxS, {
     yAxes: [{
     ticks: {
       min: 0,
-      max: totalesGranjas,
+      max: totalesGranjasAnimales,
       maxTicksLimit: 5,
       padding: 10,
       // Include a dollar sign in the ticks
       callback: function(value, index, values) {
-      return  number_format(value);
+      return  number_format(value)+' Unid.';
       }
     },
     gridLines: {
@@ -268,7 +516,7 @@ var myBarChartGranjas = new Chart(ctxS, {
     callbacks: {
       label: function(tooltipItem, chart) {
         var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-        return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+ ' Kg';
+        return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+ ' Unid.';
       }
     }
   },

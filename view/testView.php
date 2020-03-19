@@ -163,6 +163,30 @@ foreach ($valGranjas as $key => $value) {
 	echo $value;
 }
 echo '<br>';
+echo 'kilos y cantidad';
+echo '<br>';
+$valGranjas1 = Array(
+				array("lugar"=>"CEAPOCA","kilos"=>"0,", "cantidad"=>"0,"),
+				array("lugar"=>"LA PARREÑA","kilos"=>"0,", "cantidad"=>"0,"),
+				array("lugar"=>"LOS CERRITOS 1","kilos"=>"0,", "cantidad"=>"0,"),
+				array("lugar"=>"LOS CERRITOS 2","kilos"=>"0,", "cantidad"=>"0,"),
+				array("lugar"=>"MATACARMELERA","kilos"=>"0,", "cantidad"=>"0,"),
+				array("lugar"=>"OJO DE AGUA","kilos"=>"0,", "cantidad"=>"0,"),
+				array("lugar"=>"URIMAN 1","kilos"=>"0,", "cantidad"=>"0,"),
+				array("lugar"=>"URIMAN 2","kilos"=>"0,", "cantidad"=>"0,"),
+				array("lugar"=>"VILLA DE JULIA","kilos"=>"0", "cantidad"=>"0")
+			);
+print_r($valGranjas1);
+echo '<br>';
+echo '<br>';
+foreach ($valGranjas1 as $key => $value) {
+	
+	echo $value['kilos'];
+
+
+}
+echo '<br>';
+echo '<br>';
 foreach ($totalAñoGranjas as $key => $value) {
 	switch ($value['lugar']) {
 		case 'CEAPOCA':

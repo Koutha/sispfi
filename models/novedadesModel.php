@@ -254,7 +254,7 @@ class novedadesClass extends baseClass{
 	 }
 
 	 public function totalAñoGranjas ($año){
-	 //total de animales robados y total de kilos por año
+	 //total de animales robados y total de kilos por año por granjas
 	 	try {
 	 		$sql = "SELECT sum(rc.cantidad) as total_cerdos , sum(rc.kilos) as total_kilos, lugar  
 	 				FROM robo_cerdo rc 

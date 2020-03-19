@@ -145,8 +145,35 @@ $('#printBarChart').on('click', function() {
     var blob = pdf.output("bloburl");
     window.open(blob);
 });
+$('#printBarChartAnimales').on('click', function() {
+	var canvas = document.querySelector("#BarChartAnimales");
+    var canvas_img = canvas.toDataURL("image/png",1.0); //JPEG will not match background color
+    var pdf = new jsPDF('landscape','in', 'letter'); //orientation, units, page size
+    pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+    pdf.autoPrint(); //print window automatically opened with pdf
+    var blob = pdf.output("bloburl");
+    window.open(blob);
+});
 $('#printBarChartG').on('click', function() {
 	var canvas = document.querySelector("#barChartGranjas");
+    var canvas_img = canvas.toDataURL("image/png",1.0); //JPEG will not match background color
+    var pdf = new jsPDF('landscape','in', 'letter'); //orientation, units, page size
+    pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+    pdf.autoPrint(); //print window automatically opened with pdf
+    var blob = pdf.output("bloburl");
+    window.open(blob);
+});
+$('#printBarChartSec').on('click', function() {
+	var canvas = document.querySelector("#barChartSeccion");
+    var canvas_img = canvas.toDataURL("image/png",1.0); //JPEG will not match background color
+    var pdf = new jsPDF('landscape','in', 'letter'); //orientation, units, page size
+    pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
+    pdf.autoPrint(); //print window automatically opened with pdf
+    var blob = pdf.output("bloburl");
+    window.open(blob);
+});
+$('#printBarChartSecA').on('click', function() {
+	var canvas = document.querySelector("#barChartSeccionAnimales");
     var canvas_img = canvas.toDataURL("image/png",1.0); //JPEG will not match background color
     var pdf = new jsPDF('landscape','in', 'letter'); //orientation, units, page size
     pdf.addImage(canvas_img, 'png', .5, 1.75, 10, 5); //image, type, padding left, padding top, width, height
