@@ -230,6 +230,25 @@ class novedadesClass extends baseClass{
 		}
 	}
 
+	public function totalMesAñoFilter($fechaInicio,$fechaFin,$lugar,$mes,$año){
+		try {
+			$sql = "SELECT sum(cantidad) as total_cerdos, sum(kilos) as total_kilos 
+					FROM robo_cerdo rc
+					JOIN (select * FROM (SELECT * FROM novedades WHERE fecha_hecho BETWEEN '$fechaInicio' AND timestamp '$fechaFin' AND lugar = '$lugar') nov_año
+					WHERE EXTRACT(MONTH FROM fecha_hecho) = '$mes' AND EXTRACT(YEAR FROM fecha_hecho) = '$año') nov_mes ON rc.id_novedades = nov_mes.id_novedades";
+			$conn = $this->getConexion();
+			$query=$conn->query($sql);
+			if($row = $query->fetch(PDO::FETCH_ASSOC)){
+				$result= $row;
+				return $result;
+			}else{
+				return 0;
+			}
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+		}
+	}
+
 	 public function totalAño ($año){
 	 //total de animales robados y total de kilos por año
 	 	try {
@@ -241,6 +260,26 @@ class novedadesClass extends baseClass{
 							BETWEEN '$año' AND timestamp '$año' + interval '1 year') nv 
 					ON rc.id_novedades = nv.id_novedades";	
 			$conn = $this->getConexion();
+			$query=$conn->query($sql);
+			if($row = $query->fetch(PDO::FETCH_ASSOC)){
+				$result= $row;
+				return $result;
+			}else{
+				return 0;
+			}
+	 	} catch (PDOException $e) {
+	 		echo $e->getMessage();
+	 	}
+	 }
+
+	 public function totalAñoFilter($fechaInicio,$fechaFin,$lugar){
+	 	try {
+	 		$sql = "SELECT sum(cantidad) AS total_cerdos, sum(kilos) AS total_kilos 
+	 		FROM robo_cerdo rc 
+	 		JOIN (	SELECT * FROM novedades WHERE fecha_hecho 
+	 		BETWEEN '$fechaInicio' AND timestamp '$fechaFin' AND lugar = '$lugar') nv 
+	 		ON rc.id_novedades = nv.id_novedades";
+	 		$conn = $this->getConexion();
 			$query=$conn->query($sql);
 			if($row = $query->fetch(PDO::FETCH_ASSOC)){
 				$result= $row;

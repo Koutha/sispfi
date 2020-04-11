@@ -12,79 +12,9 @@
 				<div class="container-fluid">
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Control de Robos -  Reportes Consolidados</h1>
+						<h1 class="h3 mb-0 text-gray-800">Control de Robos - Reportes Consolidados </h1>
 					</div>
 					
-					<!-- <h4>Registrar Estación fija</h4> -->
-					<div class="col-sm-12 col-md-12 col-lg-5">
-						<div class="card shadow my-4">
-							<div class="card-body">
-								<!-- Nested Row within Card Body -->
-								<form action="" method="post" class="user" role="form" id="novedadesForm">
-									<div class="row">
-										<div class="col-md-12">
-											<div class="text-center">
-												<h1 class="h4 text-gray-900 mt-2">Filtrar</h1>
-												<hr>
-											</div>
-											<div class="p-3">
-												<div class="form-group">
-													<label for="lugar"><strong>Lugar</strong></label>
-													<select name="lugar" class="form-control selectpicker show-tick" required="required" id="lugar" data-live-search="true" title="Seleccione un lugar">
-														<option value="CEAPOCA">CEAPOCA</option>
-														<option value="LA PARREÑA">LA PARREÑA</option>
-														<option value="LOS CERRITOS 1">LOS CERRITOS 1</option>
-														<option value="LOS CERRITOS 2">LOS CERRITOS 2</option>
-														<option value="MATACARMELERA">MATACARMELERA</option>
-														<option value="OJO DE AGUA">OJO DE AGUA</option>
-														<option value="URIMAN 1">URIMAN 1</option>
-														<option value="URIMAN 2">URIMAN 2</option>
-														<option value="VILLA DE JULIA">VILLA DE JULIA</option>
-													</select>
-												</div>
-												<h6><strong>Fecha</strong></h6>
-												<div class="form-group row">
-
-													<div class="col-sm-6">
-														<label for="fecha_inicio">Desde</label>
-														<div class="input-group date" id="fecha_inicio" data-target-input="nearest">
-															<input type="text" name="fecha_inicio" id="fecha_inicio" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_inicio" autocomplete="off" value="<?php echo isset($_POST['fecha_inicio']) ? $_POST['fecha_inicio']:""; ?>" required>
-															<div class="input-group-append" >
-																<div class="input-group-text">
-																	<i class="fa fa-calendar"></i>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-sm-6">
-														<label for="fecha_fin">Hasta</label>
-														<div class="input-group date" id="fecha_fin" data-target-input="nearest">
-															<input type="text" name="fecha_fin" id="fecha_fin" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#fecha_fin" autocomplete="off" value="<?php echo isset($_POST['fecha_fin']) ? $_POST['fecha_fin']:""; ?>" required>
-															<div class="input-group-append" >
-																<div class="input-group-text">
-																	<i class="fa fa-calendar"></i>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div><!-- End of div class row -->
-									<hr>
-									<div class="form-group" >
-										<div class="text-center">
-											<div class="col-sm-12">
-												<button type="submit" name="submit" value="novedadesReport" id="btnNovedadesReport" class="btn btn-primary btn-user">Buscar</button>
-											</div>
-										</div>
-									</div>
-									<hr>
-								</form>
-								<!-- Area Chart -->
-							</div><!-- End of div class card-body p-0 -->
-						</div><!-- End of div class card o-hidden border-0 shadow-lg my-5 -->
-					</div><!-- End of div class container -->
 					<!-- <div class="row"> -->
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
 							<div class="card shadow mb-4">
@@ -410,7 +340,7 @@ var datosSeccionAnimales = {
 		data: [<?php echo $total2['total_cerdos'].',';foreach($valSeccionAnimales2 as $key => $value){echo $value;}?>],
 		}],
   };
-var totalesGranjas = <?php echo $total1['total_kilos']+$total2['total_kilos']; ?>;
-var totalesGranjasAnimales = <?php echo $total1['total_cerdos']+$total2['total_cerdos']; ?>;
+var totalesGranjas = <?php if ($total1>=$total2){echo $total1['total_kilos'];}else{echo $total2['total_kilos'];}?>;
+var totalesGranjasAnimales = <?php if ($total1>=$total2){echo $total1['total_cerdos'];}else{echo $total2['total_cerdos'];}?>;
 </script>			
 <?php require_once('core/footer.php'); ?>

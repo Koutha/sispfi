@@ -107,11 +107,11 @@ $(function () {
 		useCurrent: false
 	});
 	$('#fecha_inicio').datetimepicker({
-		format: 'MM/YYYY',
+		format: 'YYYY/MM',
 		useCurrent: false
 	});
 	$('#fecha_fin').datetimepicker({
-		format: 'MM/YYYY',
+		format: 'YYYY/MM',
 		useCurrent: false
 	});
 	
@@ -125,11 +125,14 @@ $(function () {
 	});
 	//vincular las fechas fecha_reporte no sea menor a la fecha_hecho
 	$("#fecha_inicio").on("change.datetimepicker", function (e) {
-		$('#fecha_fin').datetimepicker('minDate', e.date.add(1, 'years'));
+		var min = e;
+		// $('#fecha_fin').datetimepicker('minDate', e.date.add(1, 'month'));
+		$('#fecha_fin').datetimepicker('maxDate', e.date.add(12, 'month'));
+		
 	});
 	//vincular las fechas fecha_hecho no sea mayor a la del reporte
 	$("#fecha_fin").on("change.datetimepicker", function (e) {
-		$('#fecha_inicio').datetimepicker('maxDate', e.date.subtract(1, 'years'));
+		$('#fecha_inicio').datetimepicker('minDate', e.date.subtract(1, 'years'));
 	});
 });
 </script>

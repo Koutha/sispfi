@@ -88,16 +88,16 @@
 					</div>
 				</li>
 				<!-- Nav Item - Novedades Collapse Menu -->
-				<li class="nav-item <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesList"||$_GET['do']=="novedadesDetails"){echo "active";} ?>">
-					<a class="nav-link <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesList"||$_GET['do']=="novedadesDetails"){echo "";}else{echo "collapsed";} ?>" href="#" data-toggle="collapse" data-target="#collapseNovedades" aria-expanded="true" aria-controls="collapseNovedades">
+				<li class="nav-item <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesList"||$_GET['do']=="novedadesDetails"||$_GET['do']=="novedadesReportFilter"){echo "active";} ?>">
+					<a class="nav-link <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesList"||$_GET['do']=="novedadesDetails"||$_GET['do']=="novedadesReportFilter"){echo "";}else{echo "collapsed";} ?>" href="#" data-toggle="collapse" data-target="#collapseNovedades" aria-expanded="true" aria-controls="collapseNovedades">
 						<i class="fas fa-layer-group"></i>
 						<span>Novedades</span>
 					</a>
-					<div id="collapseNovedades" class="collapse <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesList"||$_GET['do']=="novedadesDetails"){echo "show";} ?>" aria-labelledby="headingNovedades" data-parent="#accordionSidebar">
+					<div id="collapseNovedades" class="collapse <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesList"||$_GET['do']=="novedadesDetails"||$_GET['do']=="novedadesReportFilter"){echo "show";} ?>" aria-labelledby="headingNovedades" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
 							<h6 class="collapse-header">Gestion de Novedades</h6>
 							<ul class="navbar-nav accordion" id="accordionSidebarNV">
-								<li class="nav-item <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="novedadesList"){echo "active";} ?>" style="margin-bottom: 0px;">
+								<li class="nav-item <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"){echo "active";} ?>" style="margin-bottom: 0px;">
 									<a class="nav-link <?php if(isset($_GET['do'])&&$_GET['do']=="regNovedades"||$_GET['do']=="regNovedadesRobos"){echo "";}else{echo "collapsed";} ?>" href="#" data-toggle="collapse" data-target="#collapseNV" aria-expanded="true" aria-controls="collapse" style="padding-right: 17px;color: #1f1c1c;">
 										<i class="fas fa-edit" style="color: rgba(0,0,0,.9);"></i>
 										<span>Registrar</span>
@@ -111,9 +111,23 @@
 									</div>
 								</li>
 							</ul>
-							<!-- <a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='regNovedades'){echo "active";} ?>" href="?do=regNovedades"><i class="fas fa-edit" style="color: rgba(0,0,0,.9);"></i> Registrar</a> -->
 							<a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='novedadesList'||$_GET['do']=="novedadesDetails"){echo "active";} ?>" href="?do=novedadesList"><i class="fas fa-book"></i> Consultas</a>
-							<a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='novedadesReport'){echo "active";} ?>" href="?do=novedadesReport"><i class="far fa-chart-bar"></i> Estadísticas</a>
+							<!-- <a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='novedadesReport'){echo "active";} ?>" href="?do=novedadesReport"><i class="far fa-chart-bar"></i> Estadísticas</a> -->
+							<ul class="navbar-nav accordion" id="accordionSidebarE">
+								<li class="nav-item <?php if(isset($_GET['do'])&&$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesReportFilter"){echo "active";} ?>" style="margin-bottom: 0px;">
+									<a class="nav-link <?php if(isset($_GET['do'])&&$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesReportFilter"){echo "";}else{echo "collapsed";} ?>" href="#" data-toggle="collapse" data-target="#collapseE" aria-expanded="true" aria-controls="collapse" style="padding-right: 17px;color: #1f1c1c;">
+										<i class="far fa-chart-bar" style="color: rgba(0,0,0,.9);"></i>
+										<span>Estadísticas</span>
+									</a>
+									<div id="collapseE" class="collapse <?php if(isset($_GET['do'])&&$_GET['do']=="novedadesReport"||$_GET['do']=="novedadesReportFilter"){echo "show";} ?>" aria-labelledby="headingE" data-parent="#accordionSidebarE">
+										<div class="bg-white py-2 collapse-inner rounded">
+											<h6 class="collapse-header">Gestion de Estadisticas</h6>
+											<a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='novedadesReport'){echo "active";} ?>" href="?do=novedadesReport"><i class="fas fa-chart-line"></i> Consolidadas</a>
+											<a class="collapse-item <?php if(isset($_GET['do'])&&$_GET['do']=='novedadesReportFilter'){echo "active";} ?>" href="?do=novedadesReportFilter"><i class="fas fa-chart-pie"></i> Busquedas</a>
+										</div>
+									</div>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</li>

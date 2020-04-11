@@ -208,7 +208,7 @@ var myBarChartGranjas = new Chart(ctxG, {
     ticks: {
       min: 0,
       max: totalesGranjas,
-      maxTicksLimit: 5,
+      maxTicksLimit: 6,
       padding: 10,
       // Include a dollar sign in the ticks
       callback: function(value, index, values) {

@@ -232,6 +232,42 @@ foreach ($nov1 as $key => $value) {
 	echo 'kilos: '.$value['kilos'];
 	echo '<br>';
 }
+
+echo '<br><br>';
+echo 'datos filtrados';
+echo '<br><br>';
+
+
+setlocale(LC_ALL, "ES"); //sirve para cambiar el idioma en el script para las funciones de time()
+
+$start    = (new DateTime('2019/01/01'))->modify('first day of this month');
+$end      = (new DateTime('2019/12/01'))->modify('first day of next month');
+$interval = DateInterval::createFromDateString('1 month');
+$period   = new DatePeriod($start, $interval, $end);
+
+foreach ($period as $dt) {
+    // echo $dt->format("Y- F") . "<br>\n";
+    echo $formatted_time = strftime("%B - %m - %Y", $dt->getTimestamp()). "<br>\n";
+
+}
+
+
+//consultas para graficas filtradasa
+$fechaInicio = "01/01/2019";
+$fechaFin = "01/02/2019";
+//POR FECHA PASADA POR PARAMETRO Y POR GRANJA 
+$fsql = "SELECT sum(cantidad) as total_cerdos, sum(kilos) as total_kilos FROM robo_cerdo rc
+JOIN (SELECT * FROM (	SELECT * FROM novedades 
+						WHERE fecha_hecho BETWEEN '01/01/2019' AND timestamp '01/02/2019' AND lugar = 'CEAPOCA'
+					) nov_año
+		WHERE EXTRACT(MONTH FROM fecha_hecho) = '1') nov_mes ON rc.id_novedades = nov_mes.id_novedades";
+
+//parametros fecha inicio - fecha fin - mes y año - nombre de granja
+$fsql1 = "SELECT sum(cantidad) as total_cerdos, sum(kilos) as total_kilos FROM robo_cerdo rc
+JOIN (select * from (SELECT * FROM novedades WHERE fecha_hecho BETWEEN '01/01/2019' AND timestamp '01/03/2020' AND lugar = 'CEAPOCA') nov_año
+WHERE EXTRACT(MONTH FROM fecha_hecho) = '1' AND EXTRACT(YEAR FROM fecha_hecho) = '2020') nov_mes ON rc.id_novedades = nov_mes.id_novedades";
+
+
  ?>
 
 
